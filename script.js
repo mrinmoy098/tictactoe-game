@@ -274,15 +274,15 @@ let gameStartAnimation = false;
 
 // Click Sound
 const clickSound =
-new Audio("assets/sounds/click.mp3");
+new Audio("click.mp3");
 
 // Win Sound
 const winSound =
-new Audio("assets/sounds/win.mp3");
+new Audio("win.mp3");
 
 // Draw Sound
 const drawSound =
-new Audio("assets/sounds/draw.mp3");
+new Audio("draw.mp3");
 
 
 // Volume
