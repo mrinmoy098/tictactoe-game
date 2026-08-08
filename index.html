@@ -43,7 +43,7 @@
 
     <h1>Tic Tac Toe</h1>
     
-    <!-- SCOREBOARD (এখানে বাবল যোগ করা হয়েছে) -->
+    <!-- SCOREBOARD -->
     <div class="scoreboard">
         <div class="playerScore player-box">
             <div id="bubbleX" class="speech-bubble bubble-x"></div>
@@ -78,10 +78,9 @@
         <span id="roomCodeText"></span>
     </div>
 
+    <!-- GAME AREA (শুধুমাত্র গেম বোর্ড রাখা হয়েছে) -->
     <div class="gameArea">
-
         <div class="board">
-
             <div class="cell" data-index="0"></div>
             <div class="cell" data-index="1"></div>
             <div class="cell" data-index="2"></div>
@@ -93,35 +92,11 @@
             <div class="cell" data-index="6"></div>
             <div class="cell" data-index="7"></div>
             <div class="cell" data-index="8"></div>
-
         </div>
-
-        <div id="chatContainer" style="display:none;">
-
-            <h3>💬 Chat</h3>
-
-            <div id="chatMessages"></div>
-
-            <div class="chatInputArea">
-
-                <input
-                    type="text"
-                    id="chatInput"
-                    placeholder="Type Message..."
-                >
-
-                <button id="sendChatBtn">
-                    Send
-                </button>
-
-            </div>
-
-        </div>
-
     </div>
 
+    <!-- BUTTONS -->
     <div class="bottomButtons">
-
         <button id="restart">
             🔄 Restart Game
         </button>
@@ -143,8 +118,26 @@
         </button>
     </div>
 
-</div>
+    <!-- CHAT BOX (বাটনগুলোর নিচে আনা হয়েছে) -->
+    <div id="chatContainer" style="display:none;">
+        <h3>💬 Chat</h3>
 
+        <div id="chatMessages"></div>
+
+        <div class="chatInputArea">
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Type Message..."
+            >
+
+            <button id="sendChatBtn">
+                Send
+            </button>
+        </div>
+    </div>
+
+</div>
 <!-- ================= ONLINE MULTIPLAYER SCREEN ================= -->
 
 <div id="onlineScreen" style="display:none;">
