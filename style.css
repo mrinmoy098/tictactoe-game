@@ -63,26 +63,26 @@ body{
     justify-content: space-between;
 }
 
-.gameArea {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-}
-
 /* =========================
-   BOARD (অন্য মোডগুলোর মতো স্থায়ী রাখা)
+   GAME AREA & BOARD FIX
 ========================= */
 
+.gameArea {
+    width: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
 .board {
-    display: grid;
-    grid-template-columns: repeat(3, min(85px, 24vw));
-    grid-template-rows: repeat(3, min(85px, 24vw));
+    display: grid !important;
+    grid-template-columns: repeat(3, min(80px, 22vw));
+    grid-template-rows: repeat(3, min(80px, 22vw));
     gap: 8px;
-    order: 1; /* সবসময় ১ নম্বরে গেম বোর্ড থাকবে */
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 /* =========================
@@ -117,15 +117,14 @@ body{
 #chatContainer {
     width: 100%;
     max-width: 320px;
-    height: 100px; /* ছোট সাইজ যেন স্ক্রোল না আসে */
+    height: 100px;
     background: #20293a;
     border: 2px solid #00ff99;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     padding: 6px 10px;
-    margin-top: 5px;
-    order: 3; /* ৩ নম্বরে বাটনের নিচে চ্যাট বক্স যাবে */
+    margin-top: 10px;
 }
 
 #chatContainer h3 {
