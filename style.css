@@ -1,709 +1,355 @@
 /* =========================
-   RESET
+   RESET & GLOBAL
 ========================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* =========================
-   BODY
+   SCREEN & CONTAINER
 ========================= */
 
-body{
+.screen {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
-    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
-
-    color:white;
-
-    width:100vw;
-
-    height:100vh;
-
-    overflow:hidden;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
+.container {
+    width: 100%;
+    max-width: 450px; /* মোবাইলের জন্য রেসপনসিভ মার্জিন */
+    margin: 0 auto;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
 
 /* =========================
-   SCREEN
+   TITLE & HEADINGS
 ========================= */
 
-.screen{
-
-    width:100%;
-
-    height:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    flex-direction:column;
-
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 0 0 15px #00ff99;
+    text-align: center;
 }
 
 /* =========================
-   GAME SCREEN
+   SCOREBOARD & BUBBLES
 ========================= */
 
-.container{
-
-    width:100%;
-
-    height:100vh;
-
-    max-width:1400px;
-
-    margin:auto;
-
-    padding:15px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:space-between;
-
+.scoreboard {
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    position: relative;
+    box-sizing: border-box;
 }
 
-/* =========================
-   TITLE
-========================= */
-
-h1{
-
-    font-size:55px;
-
-    margin-bottom:15px;
-
-    color:white;
-
-    text-shadow:0 0 15px #00ff99;
-
+.playerScore {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-/* =========================
-   SCORE
-========================= */
-
-.scoreboard{
-
-    width:500px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:15px;
-
-}
-
-.playerScore{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    font-size:30px;
-
-    font-weight:bold;
-
-}
-
-.timerBox{
-
-    color:#00ff99;
-
-    font-size:24px;
-
+.timerBox {
+    color: #00ff99;
+    font-size: 1.1rem;
 }
 
 /* =========================
    STATUS
 ========================= */
 
-#gameModeText{
-
-    color:#ffd54f;
-
-    font-size:22px;
-
-    margin-bottom:10px;
-
+#gameModeText {
+    color: #ffd54f;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
-.status{
-
-    color:#00ff99;
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    margin-bottom:12px;
-
+.status {
+    color: #00ff99;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
 }
 
-#roomInfo{
-
-    margin-bottom:20px;
-
-    font-size:24px;
-
-}
-/* =========================
-   GAME AREA
-========================= */
-
-.gameArea{
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:35px;
-
-    flex:1;
-
+#roomInfo {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 /* =========================
-   BOARD
+   GAME AREA & BOARD
 ========================= */
 
-.board{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,110px);
-
-    grid-template-rows:repeat(3,110px);
-
-    gap:10px;
-
+.gameArea {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
-.cell{
-
-    width:110px;
-
-    height:110px;
-
-    background:#1f2937;
-
-    border:3px solid #00ff99;
-
-    border-radius:15px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:60px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+/* বোর্ড অটো-সাইজ হবে, ডানদিকে বের হবে না */
+.board {
+    width: 100%;
+    max-width: 270px;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 10px auto;
 }
 
-.cell:hover{
+.cell {
+    width: 100%;
+    height: 100%;
+    background: #1f2937;
+    border: 3px solid #00ff99;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
 
-    transform:scale(1.05);
-
-    background:#273449;
-
+.cell:hover {
+    transform: scale(1.03);
+    background: #273449;
 }
 
 /* =========================
    CHAT
 ========================= */
 
-#chatContainer{
-
-    width:300px;
-
-    height:320px;
-
-    background:#20293a;
-
-    border:2px solid #00ff99;
-
-    border-radius:15px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    padding:15px;
-
+#chatContainer {
+    width: 100%;
+    max-width: 280px;
+    height: 180px;
+    background: #20293a;
+    border: 2px solid #00ff99;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
 }
 
-#chatContainer h3{
-
-    text-align:center;
-
-    margin-bottom:10px;
-
+#chatContainer h3 {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
 }
 
-#chatMessages{
-
-    flex:1;
-
-    overflow-y:auto;
-
-    border:1px solid #666;
-
-    border-radius:10px;
-
-    padding:10px;
-
-    margin-bottom:10px;
-
+#chatMessages {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #666;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
 }
 
-.chatInputArea{
-
-    display:flex;
-
-    gap:8px;
-
+.chatInputArea {
+    display: flex;
+    gap: 6px;
 }
 
-#chatInput{
-
-    flex:1;
-
-    height:42px;
-
-    padding:8px;
-
-    border-radius:8px;
-
-    border:none;
-
-    outline:none;
-
+#chatInput {
+    flex: 1;
+    height: 35px;
+    padding: 6px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 0.85rem;
 }
 
-#sendChatBtn{
-
-    width:90px;
-
-    height:42px;
-
+#sendChatBtn {
+    width: 70px;
+    height: 35px;
+    font-size: 0.8rem;
 }
 
 /* =========================
    BUTTONS
 ========================= */
 
-.bottomButtons{
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:12px;
-
-    flex-wrap:nowrap;
-
-    margin-top:15px;
-
+.bottomButtons {
+    width: 100%;
+    max-width: 320px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
 }
 
-.bottomButtons button{
-
-    width:180px;
-
-    height:52px;
-
-    font-size:17px;
-
+.bottomButtons button {
+    width: 100%;
+    height: 42px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 8px;
 }
+
+/* Home / Difficulty / Online Buttons */
+
+#homeScreen button,
+#difficultyScreen button,
+#onlineScreen button {
+    width: 90%;
+    max-width: 280px;
+    height: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #00ff99;
+    color: #111;
+    transition: .3s;
+}
+
+#homeScreen button:hover,
+#difficultyScreen button:hover,
+#onlineScreen button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ff99;
+}
+
+#onlineScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#onlineScreen h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 12px #00ff99;
+}
+
+#roomCode {
+    width: 90%;
+    max-width: 280px;
+    height: 45px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    margin: 10px 0;
+}
+
 /* =========================
-   WIN
+   WIN ANIMATION
 ========================= */
 
-.win{
-
-    background:#4CAF50;
-
-    animation:winnerGlow .8s infinite alternate;
-
+.win {
+    background: #4CAF50;
+    animation: winnerGlow .8s infinite alternate;
 }
 
-@keyframes winnerGlow{
-
-    from{
-
-        transform:scale(1);
-
+@keyframes winnerGlow {
+    from { transform: scale(1); }
+    to {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #00ff99;
     }
-
-    to{
-
-        transform:scale(1.08);
-
-        box-shadow:0 0 20px #00ff99;
-
-    }
-
-}
-/* Home Screen Buttons */
-
-#homeScreen button{
-
-    width:320px;
-
-    height:65px;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-}
-/* =========================
-   DIFFICULTY SCREEN BUTTONS
-========================= */
-
-#difficultyScreen button{
-
-    width:300px;
-
-    height:60px;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-    margin:10px 0;
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    background:#00ff99;
-
-    color:#111;
-
-    transition:.3s;
-
 }
 
-#difficultyScreen button:hover{
-
-    transform:scale(1.05);
-
-    box-shadow:0 0 18px #00ff99;
-
-}
-/* =========================
-   ONLINE SCREEN
-========================= */
-
-#onlineScreen{
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-}
-
-#onlineScreen h2{
-
-    font-size:48px;
-    margin-bottom:30px;
-    text-shadow:0 0 12px #00ff99;
-
-}
-
-#onlineScreen button{
-
-    width:320px;
-    height:60px;
-
-    font-size:22px;
-    font-weight:bold;
-
-    margin:10px 0;
-
-    border:none;
-    border-radius:12px;
-
-    cursor:pointer;
-
-    background:#00ff99;
-    color:#111;
-
-    transition:.3s;
-
-}
-
-#onlineScreen button:hover{
-
-    transform:scale(1.05);
-    box-shadow:0 0 18px #00ff99;
-
-}
-
-#roomCode{
-
-    width:320px;
-    height:55px;
-
-    padding:12px;
-
-    font-size:20px;
-
-    border-radius:10px;
-
-    border:none;
-
-    outline:none;
-
-    margin:15px 0;
-
-}
 /* ==========================
-   GAME START ANIMATION
+   GAME START ANIMATION & OVERLAY
 ========================== */
 
-.gameStartAnimation{
-
-    animation: gameStartPop 2s ease;
-
-    color:#00ff99;
-
-    text-shadow:0 0 20px #00ff99;
-
-}
-
-@keyframes gameStartPop{
-
-    0%{
-
-        transform:scale(0.3);
-
-        opacity:0;
-
-    }
-
-    40%{
-
-        transform:scale(1.4);
-
-        opacity:1;
-
-    }
-
-    70%{
-
-        transform:scale(1);
-
-    }
-
-    100%{
-
-        transform:scale(1);
-
-        opacity:1;
-
-    }
-
-}
-/* =========================
-   GAME START OVERLAY
-========================= */
-
-#gameStartOverlay{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    display:none;
-
-    justify-content:center;
-    align-items:center;
-
-    background:rgba(0,0,0,.65);
-
-    z-index:9999;
-
-}
-
-#gameStartOverlay h1{
-
-    font-size:90px;
-
-    color:#00ff99;
-
-    text-shadow:
-        0 0 20px #00ff99,
-        0 0 40px #00ff99,
-        0 0 80px #00ff99;
-
-    animation:gameStartAnim 2s forwards;
-
-}
-
-@keyframes gameStartAnim{
-
-    0%{
-
-        transform:scale(.2);
-
-        opacity:0;
-
-    }
-
-    35%{
-
-        transform:scale(1.3);
-
-        opacity:1;
-
-    }
-
-    70%{
-
-        transform:scale(1);
-
-        opacity:1;
-
-    }
-
-    100%{
-
-        transform:scale(2);
-
-        opacity:0;
-
-    }
-
-}
-/* Player Box Position */
-.player-box {
-    position: relative;
-}
-
-/* Speech Bubble Style (Imitates Carrom Game) */
-.speech-bubble {
-    position: absolute;
-    top: -45px;
-    background-color: #ffd500;
-    color: #000000;
-    padding: 6px 14px;
-    border-radius: 18px;
-    font-weight: bold;
-    font-size: 13px;
-    border: 2px solid #000000;
-    white-space: nowrap;
-    z-index: 100;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+#gameStartOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     display: none;
-    animation: popIn 0.25s ease-out;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.65);
+    z-index: 9999;
 }
 
-/* Pointer for Player X (Left Side) */
-.bubble-x {
-    left: 10px;
-}
-.bubble-x::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 15px;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: #ffd500 transparent;
+#gameStartOverlay h1 {
+    font-size: 3rem;
+    color: #00ff99;
+    text-shadow: 0 0 20px #00ff99;
+    animation: gameStartAnim 2s forwards;
 }
 
-/* Pointer for Player O (Right Side) */
-.bubble-y {
-    right: 10px;
-}
-.bubble-y::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    right: 15px;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: #ffd500 transparent;
+@keyframes gameStartAnim {
+    0% { transform: scale(.2); opacity: 0; }
+    35% { transform: scale(1.2); opacity: 1; }
+    70% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
 }
 
-/* Pop Animation */
-@keyframes popIn {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
 /* ======================================================
-   CHAT & SPEECH BUBBLE STYLES
+   SPEECH BUBBLES
    ====================================================== */
 
-/* Scoreboard Margin for Bubbles */
-.scoreboard {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-    margin-top: 35px; /* বাবলের জন্য পর্যাপ্ত জায়গা */
-}
-
-/* Player Box Container */
 .player-box {
     position: relative;
 }
 
-/* Speech Bubble Base Style */
 .speech-bubble {
     position: absolute;
-    top: -42px;
+    top: -38px;
     background-color: #ffd500;
     color: #000000;
-    padding: 6px 14px;
-    border-radius: 18px;
+    padding: 4px 10px;
+    border-radius: 14px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 11px;
     border: 2px solid #000000;
     white-space: nowrap;
     z-index: 999;
@@ -712,35 +358,32 @@ h1{
     animation: popIn 0.25s ease-out;
 }
 
-/* Player X Pointer (Left Side) */
 .bubble-x {
     left: 0;
 }
 .bubble-x::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 15px;
-    border-width: 8px 8px 0;
+    bottom: -7px;
+    left: 10px;
+    border-width: 7px 7px 0;
     border-style: solid;
     border-color: #ffd500 transparent;
 }
 
-/* Player O Pointer (Right Side) */
 .bubble-y {
     right: 0;
 }
 .bubble-y::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    right: 15px;
-    border-width: 8px 8px 0;
+    bottom: -7px;
+    right: 10px;
+    border-width: 7px 7px 0;
     border-style: solid;
     border-color: #ffd500 transparent;
 }
 
-/* Pop Animation */
 @keyframes popIn {
     0% { transform: scale(0); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
