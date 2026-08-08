@@ -813,23 +813,23 @@ body {
     margin-bottom: 10px;
 }
 
-/* টিক ট্যাক টো বোর্ড ছোট করার কোড */
+/* টিক ট্যাক টো বোর্ড আরও ছোট করার কোড */
 .board {
     width: 100%;
-    max-width: 300px; /* আগে ৩৮০px ছিল, ছোট করার জন্য ৩০০px করা হলো */
+    max-width: 220px; /* ৩০০px থেকে কমিয়ে ২২০px করা হলো */
     aspect-ratio: 1 / 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 6px;
     margin: 10px auto;
 }
 
 .cell {
-    font-size: 2.2rem; /* সাইজ অনুযায়ী ফন্ট সাইজ সামঞ্জস্য করা হলো */
+    font-size: 1.8rem; /* বোর্ডের সাইজ অনুযায়ী লেখার ফন্ট সাইজ সামঞ্জস্য করা হলো */
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 /* নিচের বাটনগুলো সুন্দর করে সাজানো */
