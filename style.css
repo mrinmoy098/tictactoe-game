@@ -745,3 +745,104 @@ h1{
     0% { transform: scale(0); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+/* ==========================================
+   MOBILE RESPONSIVE & FULL SCREEN STYLES
+   ========================================== */
+
+/* মূল বডি ও কন্টেইনার ফুল হাইট করবে */
+body {
+    margin: 0;
+    padding: 10px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ১. হোম স্ক্রিন বড় করার জন্য */
+#homeScreen {
+    width: 90%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#homeScreen h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#homeScreen button {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ২. গেম স্ক্রিন পুরো স্ক্রিন জুড়ে আনার জন্য */
+#gameScreen {
+    width: 95%;
+    max-width: 500px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#gameScreen h1 {
+    font-size: 2.2rem;
+    margin: 10px 0;
+}
+
+/* স্কোরবোর্ড বড় করা */
+.scoreboard {
+    width: 100%;
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+/* টিক ট্যাক টো বোর্ডটি বড় করা */
+.board {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.cell {
+    font-size: 2.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+/* নিচের বাটনগুলো সুন্দর করে সাজানো */
+.bottomButtons {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.bottomButtons button {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+}
