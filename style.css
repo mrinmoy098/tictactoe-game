@@ -787,62 +787,75 @@ body {
     cursor: pointer;
 }
 
-/* ২. গেম স্ক্রিন পুরো স্ক্রিন জুড়ে আনার জন্য */
+/* ==========================================
+   PERFECT CENTERED & BALANCED LAYOUT
+   ========================================== */
+
 #gameScreen {
-    width: 95%;
-    max-width: 500px;
-    min-height: 90vh;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    text-align: center;
 }
 
 #gameScreen h1 {
-    font-size: 2.2rem;
-    margin: 10px 0;
+    font-size: 2rem;
+    margin: 5px 0;
 }
 
-/* স্কোরবোর্ড বড় করা */
+/* স্কোরবোর্ড */
 .scoreboard {
     width: 100%;
-    font-size: 1.3rem;
+    max-width: 280px;
+    font-size: 1.1rem;
     font-weight: bold;
     display: flex;
     justify-content: space-around;
-    margin-bottom: 10px;
+    margin: 5px 0;
 }
 
-/* টিক ট্যাক টো বোর্ড আরও ছোট করার কোড */
+/* টিক ট্যাক টো বোর্ড */
 .board {
     width: 100%;
-    max-width: 220px; /* ৩০০px থেকে কমিয়ে ২২০px করা হলো */
+    max-width: 280px;
     aspect-ratio: 1 / 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin: 10px auto;
+    gap: 8px;
+    margin: 15px auto;
 }
 
 .cell {
-    font-size: 1.8rem; /* বোর্ডের সাইজ অনুযায়ী লেখার ফন্ট সাইজ সামঞ্জস্য করা হলো */
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
 }
 
-/* নিচের বাটনগুলো সুন্দর করে সাজানো */
+/* নিচের বাটনগুলো (বোর্ডের সমান চওড়া ও মাঝখানে সাজানো) */
 .bottomButtons {
     width: 100%;
+    max-width: 280px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 15px;
+    gap: 8px;
+    margin: 5px auto;
 }
 
 .bottomButtons button {
-    padding: 12px;
-    font-size: 1rem;
+    width: 100%;
+    padding: 10px 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
     border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
