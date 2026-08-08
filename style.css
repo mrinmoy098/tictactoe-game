@@ -121,95 +121,69 @@ h1{
 }
 
 /* =========================
-   GAME AREA
+   GAME AREA & CHAT FIX
 ========================= */
 
-.gameArea{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    flex:1;
-}
-
-/* =========================
-   BOARD
-========================= */
-
-.board{
-    display:grid;
-    grid-template-columns:repeat(3, min(95px, 26vw)); /* সাইজ অটোমেটিক মোবাইল স্ক্রিনে ফিট হবে */
-    grid-template-rows:repeat(3, min(95px, 26vw));
-    gap:8px;
-}
-
-.cell{
+/* বোর্ড ও চ্যাটকে পাশাপাশি না রেখে নিচে নিচে রাখার জন্য column করা হলো */
+.gameArea {
     width: 100%;
-    height: 100%;
-    background:#1f2937;
-    border:3px solid #00ff99;
-    border-radius:12px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:2.2rem;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
 }
 
-.cell:hover{
-    transform:scale(1.03);
-    background:#273449;
+/* চ্যাট বক্সটিকে ছোট করে নিচের ফাঁকা জায়গায় ফিট করা হলো */
+#chatContainer {
+    width: 100%;
+    max-width: 270px;
+    height: 120px; /* উচ্চতা কমানো হয়েছে যেন স্ক্রোল না আসে */
+    background: #20293a;
+    border: 2px solid #00ff99;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    margin-top: 5px;
 }
 
-/* =========================
-   CHAT
-========================= */
-
-#chatContainer{
-    width:280px;
-    height:250px;
-    background:#20293a;
-    border:2px solid #00ff99;
-    border-radius:15px;
-    display:flex;
-    flex-direction:column;
-    padding:10px;
+#chatContainer h3 {
+    text-align: center;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
 }
 
-#chatContainer h3{
-    text-align:center;
-    margin-bottom:8px;
+#chatMessages {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #666;
+    border-radius: 6px;
+    padding: 4px;
+    margin-bottom: 6px;
+    font-size: 0.8rem;
 }
 
-#chatMessages{
-    flex:1;
-    overflow-y:auto;
-    border:1px solid #666;
-    border-radius:10px;
-    padding:8px;
-    margin-bottom:8px;
+.chatInputArea {
+    display: flex;
+    gap: 6px;
 }
 
-.chatInputArea{
-    display:flex;
-    gap:8px;
+#chatInput {
+    flex: 1;
+    height: 30px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 0.8rem;
 }
 
-#chatInput{
-    flex:1;
-    height:38px;
-    padding:8px;
-    border-radius:8px;
-    border:none;
-    outline:none;
-}
-
-#sendChatBtn{
-    width:80px;
-    height:38px;
+#sendChatBtn {
+    width: 65px;
+    height: 30px;
+    font-size: 0.75rem;
 }
 
 /* =========================
