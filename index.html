@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tic Tac Toe Pro</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HOME SCREEN ================= -->
+
+<div id="homeScreen" class="screen">
+
+    <h1>🎮 TIC TAC TOE PRO</h1>
+
+    <button id="playFriend">👥 Play With Friend</button>
+    <button id="playAI">🤖 Play vs AI</button>
+    <button id="onlineBtn">🌍 Play Online</button>
+
+</div>
+
+<!-- ================= DIFFICULTY SCREEN ================= -->
+
+<div id="difficultyScreen" class="screen" style="display:none;">
+
+    <h1>Select Difficulty</h1>
+
+    <button id="easyBtn">🟢 Easy</button>
+    <button id="mediumBtn">🟡 Medium</button>
+    <button id="hardBtn">🔴 Hard</button>
+    <button id="backBtn">⬅ Back</button>
+
+</div>
+
+<!-- ================= GAME SCREEN ================= -->
+
+<div id="gameScreen" class="container" style="display:none;">
+
+    <h1>Tic Tac Toe</h1>
+    
+    <!-- SCOREBOARD (এখানে বাবল যোগ করা হয়েছে) -->
+    <div class="scoreboard">
+        <div class="playerScore player-box">
+            <div id="bubbleX" class="speech-bubble bubble-x"></div>
+            X :
+            <span id="scoreX">0</span>
+
+            <span id="xTimer" class="timerBox">
+                ⏱️15
+            </span>
+        </div>
+        <div class="playerScore player-box">
+            <div id="bubbleO" class="speech-bubble bubble-y"></div>
+            O :
+            <span id="scoreO">0</span>
+
+            <span id="oTimer" class="timerBox">
+                ⏱️15
+            </span>
+        </div>
+    </div>
+    
+    <div id="gameModeText">
+        Mode : Friend
+    </div>
+
+    <div id="status" class="status">
+        Player X Turn
+    </div>
+
+    <div id="roomInfo" style="display:none; margin:10px 0; font-weight:bold;">
+        Room Code :
+        <span id="roomCodeText"></span>
+    </div>
+
+    <div class="gameArea">
+
+        <div class="board">
+
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+
+        </div>
+
+        <div id="chatContainer" style="display:none;">
+
+            <h3>💬 Chat</h3>
+
+            <div id="chatMessages"></div>
+
+            <div class="chatInputArea">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Type Message..."
+                >
+
+                <button id="sendChatBtn">
+                    Send
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="bottomButtons">
+
+        <button id="restart">
+            🔄 Restart Game
+        </button>
+
+        <button id="resetScoreBtn">
+            🗑️ Reset Score
+        </button>
+
+        <button id="copyRoomBtn" style="display:none;">
+            📋 Copy Room Code
+        </button>
+
+        <button id="homeBtn">
+            🏠 Home
+        </button>
+
+        <button id="themeBtn">
+            🌙 Dark Mode
+        </button>
+    </div>
+
+</div>
+
+<!-- ================= ONLINE MULTIPLAYER SCREEN ================= -->
+
+<div id="onlineScreen" style="display:none;">
+
+    <h2>🌍 Online Multiplayer</h2>
+
+    <button id="createRoomBtn">➕ Create Room</button>
+
+    <br><br>
+
+    <input type="text" id="roomCode" placeholder="Enter Room Code">
+
+    <br><br>
+
+    <button id="joinRoomBtn">🔑 Join Room</button>
+
+    <br><br>
+
+    <button id="backFromOnlineBtn">⬅ Back</button>
+
+</div>
+
+<div id="gameStartOverlay">
+    <h1>🎮 GAME START</h1>
+</div>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
