@@ -7,6 +7,16 @@ import {
     remove,
     onValue
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+// ফোনের ব্রাউজারে সাউন্ড আনলক করার কোড
+document.addEventListener("touchstart", function() {
+    const audioElements = document.querySelectorAll("audio");
+    audioElements.forEach(audio => {
+        audio.play().then(() => {
+            audio.pause();
+            audio.currentTime = 0;
+        }).catch(e => console.log(e));
+    });
+}, { once: true });
 // ======================================================
 // TIC TAC TOE PRO V3
 // PART-1
