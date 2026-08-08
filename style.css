@@ -866,3 +866,28 @@ body {
     justify-content: center !important;
     align-items: center !important;
 }
+/* ==========================================
+   FIX OVERLAPPING SCREENS (HIDE INACTIVE SCREENS)
+   ========================================== */
+
+/* hidden ক্লাস থাকলে কোনোভাবেই স্ক্রিনে দেখাবে না */
+.hidden {
+    display: none !important;
+}
+
+/* হোম স্ক্রিন যখন একটিভ থাকবে */
+#homeScreen:not(.hidden) {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+}
+
+/* গেম স্ক্রিন যখন একটিভ থাকবে */
+#gameScreen:not(.hidden) {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
