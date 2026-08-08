@@ -788,27 +788,30 @@ body {
 }
 
 /* ==========================================
-   PERFECT CENTERED & BALANCED LAYOUT
+   PERFECT CENTER ALIGNMENT FOR ALL ELEMENTS
    ========================================== */
 
+/* মূল কন্টেইনার মাঝখানে আনা */
 #gameScreen {
     width: 100%;
-    max-width: 340px;
-    margin: 0 auto;
-    padding: 10px;
+    max-width: 320px;
+    margin: 0 auto !important;
+    padding: 10px 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
 #gameScreen h1 {
     font-size: 2rem;
     margin: 5px 0;
+    text-align: center;
 }
 
-/* স্কোরবোর্ড */
+/* স্কোরবোর্ড বোর্ডের সাথে সেন্টারে আনা */
 .scoreboard {
     width: 100%;
     max-width: 280px;
@@ -816,10 +819,16 @@ body {
     font-weight: bold;
     display: flex;
     justify-content: space-around;
-    margin: 5px 0;
+    align-items: center;
+    margin: 5px auto;
 }
 
-/* টিক ট্যাক টো বোর্ড */
+/* বোর্ডের উপরের মোড ও প্লেয়ার টার্ন টেক্সট সেন্টারে আনা */
+#gameScreen p, #gameScreen div {
+    text-align: center;
+}
+
+/* গেম বোর্ড একদম মাঝখানে সেট করা */
 .board {
     width: 100%;
     max-width: 280px;
@@ -827,7 +836,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
-    margin: 15px auto;
+    margin: 15px auto !important;
 }
 
 .cell {
@@ -838,16 +847,15 @@ body {
     border-radius: 8px;
 }
 
-/* নিচের বাটনগুলোকে বোর্ডের একদম মিডল বরাবর রাখার কোড */
+/* নিচের বাটনগুলো বোর্ডের সমান রেখে সেন্টারে আনা */
 .bottomButtons {
     width: 100%;
-    max-width: 280px; /* বোর্ডের max-width এর সাথে একদম সমান রাখা হলো */
+    max-width: 280px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
-    margin: 15px auto 0 auto; /* auto ব্যবহার করায় এটি একদম মাঝে বসে যাবে */
+    margin: 10px auto !important;
     justify-content: center;
-    align-items: center;
 }
 
 .bottomButtons button {
