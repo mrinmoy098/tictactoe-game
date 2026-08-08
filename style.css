@@ -1,135 +1,511 @@
-/* ==========================================
-   NO SCROLL - PERFECT SINGLE SCREEN LAYOUT
-   ========================================== */
+/* =========================
+   RESET
+========================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-/* স্ক্রোল পুরোপুরি বন্ধ করা */
-html, body {
-    width: 100%;
-    height: 100%;
-    max-width: 100vw;
-    max-height: 100vh;
-    overflow: hidden !important;
-    touch-action: none;
+/* =========================
+   BODY
+========================= */
+
+body{
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    color:white;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-body {
-    background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* =========================
+   SCREEN
+========================= */
+
+.screen{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
-.hidden {
-    display: none !important;
+/* =========================
+   GAME SCREEN
+========================= */
+
+.container{
+    width:100%;
+    height:100vh;
+    max-width:1400px;
+    margin:auto;
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-space-between;
 }
 
-/* গেম স্ক্রিন কন্টেইনার */
-#gameScreen, .container {
-    width: 100%;
-    max-width: 360px;
-    height: 100vh;
-    max-height: 100vh;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
+/* =========================
+   TITLE
+========================= */
+
+h1{
+    font-size:55px;
+    margin-bottom:15px;
+    color:white;
+    text-shadow:0 0 15px #00ff99;
 }
 
-/* ১. শিরোনাম (Title) */
-h1 {
-    font-size: 1.6rem;
-    color: #ffffff;
-    text-shadow: 0 0 10px #00ff99;
-    margin: 2px 0;
-    text-align: center;
+/* =========================
+   SCORE
+========================= */
+
+.scoreboard{
+    width:500px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
 }
 
-/* ২. স্কোরবোর্ড (Scoreboard) */
+.playerScore{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.timerBox{
+    color:#00ff99;
+    font-size:24px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+#gameModeText{
+    color:#ffd54f;
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.status{
+    color:#00ff99;
+    font-size:34px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+#roomInfo{
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+/* =========================
+   GAME AREA
+========================= */
+
+.gameArea{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:35px;
+    flex:1;
+}
+
+/* =========================
+   BOARD
+========================= */
+
+.board{
+    display:grid;
+    grid-template-columns:repeat(3,110px);
+    grid-template-rows:repeat(3,110px);
+    gap:10px;
+}
+
+.cell{
+    width:110px;
+    height:110px;
+    background:#1f2937;
+    border:3px solid #00ff99;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:60px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.cell:hover{
+    transform:scale(1.05);
+    background:#273449;
+}
+
+/* =========================
+   CHAT
+========================= */
+
+#chatContainer{
+    width:300px;
+    height:320px;
+    background:#20293a;
+    border:2px solid #00ff99;
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    padding:15px;
+}
+
+#chatContainer h3{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+#chatMessages{
+    flex:1;
+    overflow-y:auto;
+    border:1px solid #666;
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.chatInputArea{
+    display:flex;
+    gap:8px;
+}
+
+#chatInput{
+    flex:1;
+    height:42px;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+    outline:none;
+}
+
+#sendChatBtn{
+    width:90px;
+    height:42px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.bottomButtons{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    flex-wrap:nowrap;
+    margin-top:15px;
+}
+
+.bottomButtons button{
+    width:180px;
+    height:52px;
+    font-size:17px;
+}
+
+/* =========================
+   WIN
+========================= */
+
+.win{
+    background:#4CAF50;
+    animation:winnerGlow .8s infinite alternate;
+}
+
+@keyframes winnerGlow{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.08);
+        box-shadow:0 0 20px #00ff99;
+    }
+}
+
+/* Home Screen Buttons */
+
+#homeScreen button{
+    width:320px;
+    height:65px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* =========================
+   DIFFICULTY SCREEN BUTTONS
+========================= */
+
+#difficultyScreen button{
+    width:300px;
+    height:60px;
+    font-size:22px;
+    font-weight:bold;
+    margin:10px 0;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#00ff99;
+    color:#111;
+    transition:.3s;
+}
+
+#difficultyScreen button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 18px #00ff99;
+}
+
+/* =========================
+   ONLINE SCREEN
+========================= */
+
+#onlineScreen{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+#onlineScreen h2{
+    font-size:48px;
+    margin-bottom:30px;
+    text-shadow:0 0 12px #00ff99;
+}
+
+#onlineScreen button{
+    width:320px;
+    height:60px;
+    font-size:22px;
+    font-weight:bold;
+    margin:10px 0;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#00ff99;
+    color:#111;
+    transition:.3s;
+}
+
+#onlineScreen button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 18px #00ff99;
+}
+
+#roomCode{
+    width:320px;
+    height:55px;
+    padding:12px;
+    font-size:20px;
+    border-radius:10px;
+    border:none;
+    outline:none;
+    margin:15px 0;
+}
+
+/* ==========================
+   GAME START ANIMATION
+========================== */
+
+.gameStartAnimation{
+    animation: gameStartPop 2s ease;
+    color:#00ff99;
+    text-shadow:0 0 20px #00ff99;
+}
+
+@keyframes gameStartPop{
+    0%{
+        transform:scale(0.3);
+        opacity:0;
+    }
+    40%{
+        transform:scale(1.4);
+        opacity:1;
+    }
+    70%{
+        transform:scale(1);
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* =========================
+   GAME START OVERLAY
+========================= */
+
+#gameStartOverlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.65);
+    z-index:9999;
+}
+
+#gameStartOverlay h1{
+    font-size:90px;
+    color:#00ff99;
+    text-shadow:
+        0 0 20px #00ff99,
+        0 0 40px #00ff99,
+        0 0 80px #00ff99;
+    animation:gameStartAnim 2s forwards;
+}
+
+@keyframes gameStartAnim{
+    0%{
+        transform:scale(.2);
+        opacity:0;
+    }
+    35%{
+        transform:scale(1.3);
+        opacity:1;
+    }
+    70%{
+        transform:scale(1);
+    }
+    100%{
+        transform:scale(2);
+        opacity:0;
+    }
+}
+
+/* Player Box Position */
+.player-box {
+    position: relative;
+}
+
+/* Speech Bubble Style */
+.speech-bubble {
+    position: absolute;
+    top: -45px;
+    background-color: #ffd500;
+    color: #000000;
+    padding: 6px 14px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 13px;
+    border: 2px solid #000000;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    display: none;
+    animation: popIn 0.25s ease-out;
+}
+
+/* Pointer for Player X */
+.bubble-x {
+    left: 10px;
+}
+.bubble-x::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 15px;
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: #ffd500 transparent;
+}
+
+/* Pointer for Player O */
+.bubble-y {
+    right: 10px;
+}
+.bubble-y::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 15px;
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: #ffd500 transparent;
+}
+
+/* Pop Animation */
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ======================================================
+   CHAT & SPEECH BUBBLE STYLES
+   ====================================================== */
+
 .scoreboard {
-    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 2px 0;
+    position: relative;
+    margin-top: 35px;
 }
 
-.playerScore {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+.player-box {
+    position: relative;
 }
 
-/* ৩. স্ট্যাটাস ও মোড (Status Text) */
-#gameModeText {
-    color: #ffd54f;
-    font-size: 0.85rem;
-    margin-bottom: 2px;
-}
-
-.status {
-    color: #00ff99;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 4px;
-}
-
-/* ৪. গেম বোর্ড (Board - কম্প্যাক্ট সাইজ) */
-.board {
-    width: 100%;
-    max-width: 230px; /* সাইজ সামঞ্জস্য করা হয়েছে যেন স্ক্রোল না লাগে */
-    aspect-ratio: 1 / 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin: 5px auto;
-}
-
-.cell {
-    background: #1f2937;
-    border: 2px solid #00ff99;
-    border-radius: 8px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-/* ৫. বাটনসমূহ (Bottom Buttons) */
-.bottomButtons {
-    width: 100%;
-    max-width: 320px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    margin-bottom: 5px;
-}
-
-.bottomButtons button {
-    width: 100%;
-    height: 38px;
-    padding: 2px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    border-radius: 6px;
-    border: none;
-    background-color: #ffffff;
+.speech-bubble {
+    position: absolute;
+    top: -42px;
+    background-color: #ffd500;
     color: #000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    padding: 6px 14px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 13px;
+    border: 2px solid #000000;
+    white-space: nowrap;
+    z-index: 999;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    display: none;
+    animation: popIn 0.25s ease-out;
+}
+
+.bubble-x {
+    left: 0;
+}
+.bubble-x::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 15px;
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: #ffd500 transparent;
+}
+
+.bubble-y {
+    right: 0;
+}
+.bubble-y::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 15px;
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: #ffd500 transparent;
 }
