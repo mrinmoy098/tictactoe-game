@@ -838,14 +838,16 @@ body {
     border-radius: 8px;
 }
 
-/* নিচের বাটনগুলো (বোর্ডের সমান চওড়া ও মাঝখানে সাজানো) */
+/* নিচের বাটনগুলোকে বোর্ডের একদম মিডল বরাবর রাখার কোড */
 .bottomButtons {
     width: 100%;
-    max-width: 280px;
+    max-width: 280px; /* বোর্ডের max-width এর সাথে একদম সমান রাখা হলো */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
-    margin: 5px auto;
+    margin: 15px auto 0 auto; /* auto ব্যবহার করায় এটি একদম মাঝে বসে যাবে */
+    justify-content: center;
+    align-items: center;
 }
 
 .bottomButtons button {
