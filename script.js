@@ -7,14 +7,14 @@ import {
     remove,
     onValue
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-// ফোনের ব্রাউজারে সাউন্ড আনলক করার কোড
+// ফোনের ব্রাউজারে সরাসরি সাউন্ড ফাইল আনলক করার কোড
 document.addEventListener("touchstart", function() {
-    const audioElements = document.querySelectorAll("audio");
-    audioElements.forEach(audio => {
-        audio.play().then(() => {
-            audio.pause();
-            audio.currentTime = 0;
-        }).catch(e => console.log(e));
+    ["click.mp3", "draw.mp3", "win.mp3"].forEach(file => {
+        const a = new Audio(file);
+        a.play().then(() => {
+            a.pause();
+            a.currentTime = 0;
+        }).catch(() => {});
     });
 }, { once: true });
 // ======================================================
