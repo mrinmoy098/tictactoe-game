@@ -224,7 +224,8 @@ h1{
     align-items:center;
     gap:8px;
     flex-wrap:nowrap;
-    margin-bottom:10px;
+    margin-top: 25px;    /* বোর্ড থেকে বাটন নিচে নামাতে এই গ্যাপ বাড়ানো হলো */
+    margin-bottom: 12px;
 }
 
 .bottomButtons button{
