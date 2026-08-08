@@ -657,23 +657,20 @@ function cellClicked() {
 function updateCell(index) {
 
     // Board Update
-
     board[index] = currentPlayer;
 
     // Screen Update
-
     cells[index].textContent = currentPlayer;
 
     // Click Sound
-
-    clickSound.currentTime = 0;
-
-    clickSound.play();
+    const clickSound = document.getElementById("clickSound");
+    if (clickSound) {
+        clickSound.currentTime = 0;
+        clickSound.play().catch(e => console.log(e));
+    }
 
     // Winner Check
-
     checkWinner();
-
 }
 // --------------------------------
 // Winner Check
@@ -728,10 +725,11 @@ function checkWinner() {
 
         // Sound
 
-        winSound.currentTime = 0;
-
-        winSound.play();
-
+     const winSound = document.getElementById("winSound");
+        if (winSound) {
+            winSound.currentTime = 0;
+            winSound.play().catch(e => console.log(e));
+        }
         // Score
 
         if (currentPlayer === "X") {
@@ -754,23 +752,24 @@ function checkWinner() {
 
     // যদি Draw হয়
 
-    if (!board.includes("")) {
+   if (!board.includes("")) {
 
-        running = false;
+    running = false;
 
-        stopTimer();
+    stopTimer();
 
-        statusText.textContent =
-        "🤝 Match Draw";
+    statusText.textContent = 
+    "🤝 Match Draw";
 
+    const drawSound = document.getElementById("drawSound");
+    if (drawSound) {
         drawSound.currentTime = 0;
-
-        drawSound.play();
-
-        return;
-
+        drawSound.play().catch(e => console.log(e));
     }
 
+    return;
+
+}
     // পরের Player
 
     changePlayer();
