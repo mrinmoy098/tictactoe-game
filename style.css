@@ -10,15 +10,21 @@
 }
 
 /* =========================
-   BODY
+   BODY (SCROLL STOPPED)
 ========================= */
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden !important; /* স্ক্রোল পুরোপুরি বন্ধ */
+    touch-action: none;
+}
 
 body{
     background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
     color:white;
-    width:100vw;
-    height:100vh;
-    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -46,11 +52,11 @@ body{
     height:100vh;
     max-width:1400px;
     margin:auto;
-    padding:15px;
+    padding:10px 15px;
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-space-between;
+    justify-content:space-between;
 }
 
 /* =========================
@@ -58,35 +64,38 @@ body{
 ========================= */
 
 h1{
-    font-size:55px;
-    margin-bottom:15px;
+    font-size: 2.2rem;
+    margin-bottom:10px;
     color:white;
     text-shadow:0 0 15px #00ff99;
+    text-align: center;
 }
 
 /* =========================
-   SCORE
+   SCORE (O-KE INSIDE SCREEN ANAR JONNO FIX)
 ========================= */
 
 .scoreboard{
-    width:500px;
+    width:100%;
+    max-width: 500px; /* 500px ফিক্সড বাদ দিয়ে রেসপনসিভ করা হলো যেন O স্ক্রিনে ভেসে ওঠে */
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:15px;
+    margin-bottom:10px;
+    padding: 0 10px;
 }
 
 .playerScore{
     display:flex;
     align-items:center;
     gap:8px;
-    font-size:30px;
+    font-size:1.5rem;
     font-weight:bold;
 }
 
 .timerBox{
     color:#00ff99;
-    font-size:24px;
+    font-size:1.2rem;
 }
 
 /* =========================
@@ -95,20 +104,20 @@ h1{
 
 #gameModeText{
     color:#ffd54f;
-    font-size:22px;
-    margin-bottom:10px;
+    font-size:1.1rem;
+    margin-bottom:5px;
 }
 
 .status{
     color:#00ff99;
-    font-size:34px;
+    font-size:1.5rem;
     font-weight:bold;
-    margin-bottom:12px;
+    margin-bottom:8px;
 }
 
 #roomInfo{
-    margin-bottom:20px;
-    font-size:24px;
+    margin-bottom:10px;
+    font-size:1.2rem;
 }
 
 /* =========================
@@ -120,7 +129,7 @@ h1{
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:35px;
+    gap:20px;
     flex:1;
 }
 
@@ -130,28 +139,28 @@ h1{
 
 .board{
     display:grid;
-    grid-template-columns:repeat(3,110px);
-    grid-template-rows:repeat(3,110px);
-    gap:10px;
+    grid-template-columns:repeat(3, min(95px, 26vw)); /* সাইজ অটোমেটিক মোবাইল স্ক্রিনে ফিট হবে */
+    grid-template-rows:repeat(3, min(95px, 26vw));
+    gap:8px;
 }
 
 .cell{
-    width:110px;
-    height:110px;
+    width: 100%;
+    height: 100%;
     background:#1f2937;
     border:3px solid #00ff99;
-    border-radius:15px;
+    border-radius:12px;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:60px;
+    font-size:2.2rem;
     font-weight:bold;
     cursor:pointer;
     transition:.3s;
 }
 
 .cell:hover{
-    transform:scale(1.05);
+    transform:scale(1.03);
     background:#273449;
 }
 
@@ -160,19 +169,19 @@ h1{
 ========================= */
 
 #chatContainer{
-    width:300px;
-    height:320px;
+    width:280px;
+    height:250px;
     background:#20293a;
     border:2px solid #00ff99;
     border-radius:15px;
     display:flex;
     flex-direction:column;
-    padding:15px;
+    padding:10px;
 }
 
 #chatContainer h3{
     text-align:center;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 #chatMessages{
@@ -180,8 +189,8 @@ h1{
     overflow-y:auto;
     border:1px solid #666;
     border-radius:10px;
-    padding:10px;
-    margin-bottom:10px;
+    padding:8px;
+    margin-bottom:8px;
 }
 
 .chatInputArea{
@@ -191,7 +200,7 @@ h1{
 
 #chatInput{
     flex:1;
-    height:42px;
+    height:38px;
     padding:8px;
     border-radius:8px;
     border:none;
@@ -199,8 +208,8 @@ h1{
 }
 
 #sendChatBtn{
-    width:90px;
-    height:42px;
+    width:80px;
+    height:38px;
 }
 
 /* =========================
@@ -209,18 +218,21 @@ h1{
 
 .bottomButtons{
     width:100%;
+    max-width: 500px;
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:12px;
+    gap:8px;
     flex-wrap:nowrap;
-    margin-top:15px;
+    margin-bottom:10px;
 }
 
 .bottomButtons button{
-    width:180px;
-    height:52px;
-    font-size:17px;
+    flex: 1;
+    max-width: 120px;
+    height:42px;
+    font-size:0.8rem;
+    font-weight: bold;
 }
 
 /* =========================
@@ -237,12 +249,12 @@ h1{
         transform:scale(1);
     }
     to{
-        transform:scale(1.08);
+        transform:scale(1.05);
         box-shadow:0 0 20px #00ff99;
     }
 }
 
-/* Home Screen Buttons */
+/* Home Screen Buttons (অপরিবর্তিত রাখা হয়েছে) */
 
 #homeScreen button{
     width:320px;
@@ -332,21 +344,10 @@ h1{
 }
 
 @keyframes gameStartPop{
-    0%{
-        transform:scale(0.3);
-        opacity:0;
-    }
-    40%{
-        transform:scale(1.4);
-        opacity:1;
-    }
-    70%{
-        transform:scale(1);
-    }
-    100%{
-        transform:scale(1);
-        opacity:1;
-    }
+    0%{ transform:scale(0.3); opacity:0; }
+    40%{ transform:scale(1.4); opacity:1; }
+    70%{ transform:scale(1); }
+    100%{ transform:scale(1); opacity:1; }
 }
 
 /* =========================
@@ -367,7 +368,7 @@ h1{
 }
 
 #gameStartOverlay h1{
-    font-size:90px;
+    font-size:70px;
     color:#00ff99;
     text-shadow:
         0 0 20px #00ff99,
@@ -377,92 +378,13 @@ h1{
 }
 
 @keyframes gameStartAnim{
-    0%{
-        transform:scale(.2);
-        opacity:0;
-    }
-    35%{
-        transform:scale(1.3);
-        opacity:1;
-    }
-    70%{
-        transform:scale(1);
-    }
-    100%{
-        transform:scale(2);
-        opacity:0;
-    }
+    0%{ transform:scale(.2); opacity:0; }
+    35%{ transform:scale(1.3); opacity:1; }
+    70%{ transform:scale(1); opacity:1; }
+    100%{ transform:scale(2); opacity:0; }
 }
 
-/* Player Box Position */
-.player-box {
-    position: relative;
-}
-
-/* Speech Bubble Style */
-.speech-bubble {
-    position: absolute;
-    top: -45px;
-    background-color: #ffd500;
-    color: #000000;
-    padding: 6px 14px;
-    border-radius: 18px;
-    font-weight: bold;
-    font-size: 13px;
-    border: 2px solid #000000;
-    white-space: nowrap;
-    z-index: 100;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    display: none;
-    animation: popIn 0.25s ease-out;
-}
-
-/* Pointer for Player X */
-.bubble-x {
-    left: 10px;
-}
-.bubble-x::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 15px;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: #ffd500 transparent;
-}
-
-/* Pointer for Player O */
-.bubble-y {
-    right: 10px;
-}
-.bubble-y::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    right: 15px;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: #ffd500 transparent;
-}
-
-/* Pop Animation */
-@keyframes popIn {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* ======================================================
-   CHAT & SPEECH BUBBLE STYLES
-   ====================================================== */
-
-.scoreboard {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-    margin-top: 35px;
-}
-
+/* Player Box Position & Bubbles */
 .player-box {
     position: relative;
 }
@@ -472,10 +394,10 @@ h1{
     top: -42px;
     background-color: #ffd500;
     color: #000000;
-    padding: 6px 14px;
-    border-radius: 18px;
+    padding: 5px 12px;
+    border-radius: 16px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 12px;
     border: 2px solid #000000;
     white-space: nowrap;
     z-index: 999;
@@ -484,28 +406,29 @@ h1{
     animation: popIn 0.25s ease-out;
 }
 
-.bubble-x {
-    left: 0;
-}
+.bubble-x { left: 0; }
 .bubble-x::after {
     content: '';
     position: absolute;
     bottom: -8px;
-    left: 15px;
+    left: 12px;
     border-width: 8px 8px 0;
     border-style: solid;
     border-color: #ffd500 transparent;
 }
 
-.bubble-y {
-    right: 0;
-}
+.bubble-y { right: 0; }
 .bubble-y::after {
     content: '';
     position: absolute;
     bottom: -8px;
-    right: 15px;
+    right: 12px;
     border-width: 8px 8px 0;
     border-style: solid;
     border-color: #ffd500 transparent;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
