@@ -2080,3 +2080,28 @@ console.log(
     "🎮 Tic Tac Toe Pro V3 Loaded Successfully"
 
 );
+// ==========================================
+// AUDIO SYSTEM FOR MOBILE BROWSERS
+// ==========================================
+
+// সাউন্ড প্লে করার মূল ফাংশন
+function playSound(audioId) {
+    const sound = document.getElementById(audioId);
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(err => console.log("Audio play error:", err));
+    }
+}
+
+// ফোনের ব্রাউজারে প্রথম ক্লিকেই সব সাউন্ড পারমিশন আনলক করার কোড
+document.addEventListener('click', () => {
+    ['clickSound', 'winSound', 'drawSound'].forEach(id => {
+        const sound = document.getElementById(id);
+        if (sound) {
+            sound.play().then(() => {
+                sound.pause();
+                sound.currentTime = 0;
+            }).catch(() => {});
+        }
+    });
+}, { once: true });
