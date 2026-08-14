@@ -2121,22 +2121,3 @@ if (themeToggler) {
         }
     };
 }
-// =========================
-// LIGHT / DARK MODE TOGGLE (MOBILE & DESKTOP)
-// =========================
-const themeToggler = document.getElementById('themeBtn');
-
-if (themeToggler) {
-    const toggleTheme = (e) => {
-        document.body.classList.toggle('light-mode');
-        
-        if (document.body.classList.contains('light-mode')) {
-            themeToggler.innerText = '☀️ Light Mode';
-        } else {
-            themeToggler.innerText = '🌙 Dark Mode';
-        }
-    };
-
-    // ডেক্সটপ ও মোবাইল উভয়ের জন্যই নিখুঁত
-    themeToggler.addEventListener('click', toggleTheme);
-}
