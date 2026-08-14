@@ -1922,24 +1922,20 @@ homeBtn.addEventListener("click", async () => {
     gameMode = "friend";
 
 });
-
-// ==========================================
-// PHONE BACK BUTTON HANDLER
-// ==========================================
 window.addEventListener("popstate", function (event) {
     const gameScreen = document.getElementById("gameScreen");
     const onlineScreen = document.getElementById("onlineScreen");
     
-    // যদি গেম স্ক্রিন অথবা অনলাইন স্ক্রিন অন থাকে
     if ((gameScreen && gameScreen.style.display !== "none") || 
         (onlineScreen && onlineScreen.style.display !== "none")) {
         
-        let confirmExit = confirm("আপনি কি গেম ছেড়ে মেইন মেনুতে যেতে চান?");
+        // 🔽 বাংলা লেখার জায়গায় এই ইংরেজি টেক্সটটি বসিয়ে দাও
+        let confirmExit = confirm("Are you sure you want to leave the game and go to the main menu?");
         
         if (confirmExit) {
-            location.reload(); // 'Ok' দিলে মেইন মেনুতে (হোম স্ক্রিনে) ফেরত যাবে
+            location.reload(); 
         } else {
-            history.pushState({ inGame: true }, ""); // 'Cancel' করলে প্লেয়ার সেখানেই থাকবে
+            history.pushState({ inGame: true }, ""); 
         }
     }
 });
