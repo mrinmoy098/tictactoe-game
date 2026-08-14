@@ -2107,16 +2107,36 @@ document.addEventListener('click', () => {
 // =========================
 // LIGHT / DARK MODE TOGGLE
 // =========================
-const themeBtn = document.getElementById('themeBtn');
+// const তুলে দিয়ে সরাসরি themeBtn ব্যবহার করো অথবা আলাদা ভ্যারিয়েবল নাম দাও
+let themeToggler = document.getElementById('themeBtn');
 
-if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
+if (themeToggler) {
+    themeToggler.onclick = () => {
         document.body.classList.toggle('light-mode');
         
         if (document.body.classList.contains('light-mode')) {
-            themeBtn.innerText = '☀️ Light Mode';
+            themeToggler.innerText = '☀️ Light Mode';
         } else {
-            themeBtn.innerText = '🌙 Dark Mode';
+            themeToggler.innerText = '🌙 Dark Mode';
         }
-    });
+    };
+}
+// =========================
+// LIGHT / DARK MODE TOGGLE (MOBILE & DESKTOP)
+// =========================
+const themeToggler = document.getElementById('themeBtn');
+
+if (themeToggler) {
+    const toggleTheme = (e) => {
+        document.body.classList.toggle('light-mode');
+        
+        if (document.body.classList.contains('light-mode')) {
+            themeToggler.innerText = '☀️ Light Mode';
+        } else {
+            themeToggler.innerText = '🌙 Dark Mode';
+        }
+    };
+
+    // ডেক্সটপ ও মোবাইল উভয়ের জন্যই নিখুঁত
+    themeToggler.addEventListener('click', toggleTheme);
 }
