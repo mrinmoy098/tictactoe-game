@@ -2104,3 +2104,19 @@ document.addEventListener('click', () => {
         }
     });
 }, { once: true });
+// =========================
+// LIGHT / DARK MODE TOGGLE
+// =========================
+const themeBtn = document.getElementById('themeBtn');
+
+if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        
+        if (document.body.classList.contains('light-mode')) {
+            themeBtn.innerText = '☀️ Light Mode';
+        } else {
+            themeBtn.innerText = '🌙 Dark Mode';
+        }
+    });
+}
