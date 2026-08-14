@@ -336,6 +336,7 @@ oTimerText.textContent = "⏱️15";
 // -----------------------------
 
 playFriend.addEventListener("click", () => {
+    history.pushState({ inGame: true }, "");
 
     gameMode = "friend";
 
@@ -354,6 +355,7 @@ playFriend.addEventListener("click", () => {
 // -----------------------------
 
 playAI.addEventListener("click", () => {
+    history.pushState({ inGame: true }, "");
 
     homeScreen.style.display = "none";
     difficultyScreen.style.display = "flex";
@@ -366,6 +368,7 @@ playAI.addEventListener("click", () => {
 // -----------------------------
 
 easyBtn.addEventListener("click", () => {
+    history.pushState({ inGame: true }, "");
 
     aiDifficulty = "easy";
     gameMode = "ai";
@@ -378,6 +381,7 @@ easyBtn.addEventListener("click", () => {
 });
 
 mediumBtn.addEventListener("click", () => {
+    history.pushState({ inGame: true }, "");
 
     aiDifficulty = "medium";
     gameMode = "ai";
@@ -390,6 +394,7 @@ mediumBtn.addEventListener("click", () => {
 });
 
 hardBtn.addEventListener("click", () => {
+    history.pushState({ inGame: true }, "");
 
     aiDifficulty = "hard";
     gameMode = "ai";
@@ -407,6 +412,7 @@ hardBtn.addEventListener("click", () => {
 // -----------------------------
 
 backBtn.addEventListener("click", () => {
+    history.pushState({ inGame: true }, "");
 
     difficultyScreen.style.display = "none";
     homeScreen.style.display = "flex";
@@ -1133,6 +1139,7 @@ function getBestMove(){
 
 // Home → Online Screen
 onlineBtn.addEventListener("click", () => {
+    history.pushState({ inGame: true }, "");
 
     homeScreen.style.display = "none";
 
@@ -1161,6 +1168,7 @@ createRoomBtn.addEventListener("click", createRoom);
 // Create Room Function
 
 async function createRoom() {
+    history.pushState({ inGame: true }, "");
 
     // Random Room Code
 
@@ -1257,6 +1265,7 @@ joinRoomBtn.addEventListener("click",joinRoom);
 
 
 async function joinRoom(){
+    history.pushState({ inGame: true }, "");
 
     const roomId=
 
@@ -1912,6 +1921,27 @@ homeBtn.addEventListener("click", async () => {
 
     gameMode = "friend";
 
+});
+
+// ==========================================
+// PHONE BACK BUTTON HANDLER
+// ==========================================
+window.addEventListener("popstate", function (event) {
+    const gameScreen = document.getElementById("gameScreen");
+    const onlineScreen = document.getElementById("onlineScreen");
+    
+    // যদি গেম স্ক্রিন অথবা অনলাইন স্ক্রিন অন থাকে
+    if ((gameScreen && gameScreen.style.display !== "none") || 
+        (onlineScreen && onlineScreen.style.display !== "none")) {
+        
+        let confirmExit = confirm("আপনি কি গেম ছেড়ে মেইন মেনুতে যেতে চান?");
+        
+        if (confirmExit) {
+            location.reload(); // 'Ok' দিলে মেইন মেনুতে (হোম স্ক্রিনে) ফেরত যাবে
+        } else {
+            history.pushState({ inGame: true }, ""); // 'Cancel' করলে প্লেয়ার সেখানেই থাকবে
+        }
+    }
 });
 // =======================================
 // Reset Score
