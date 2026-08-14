@@ -433,3 +433,43 @@ h1{
     0% { transform: scale(0); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+/* ==========================================
+   FORCE LIGHT MODE OVERRIDE
+========================================== */
+
+body.light-mode {
+    background: #e2e8f0 !important;
+    color: #0f172a !important;
+}
+
+body.light-mode h1 {
+    color: #0f172a !important;
+    text-shadow: none !important;
+}
+
+body.light-mode .cell {
+    background: #ffffff !important;
+    border-color: #0284c7 !important;
+    color: #0f172a !important;
+}
+
+body.light-mode .cell:hover {
+    background: #bae6fd !important;
+}
+
+body.light-mode #chatContainer {
+    background: #ffffff !important;
+    border-color: #0284c7 !important;
+    color: #0f172a !important;
+}
+
+body.light-mode #chatMessages {
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+body.light-mode .timerBox,
+body.light-mode .status,
+body.light-mode #gameModeText {
+    color: #0369a1 !important;
+}
