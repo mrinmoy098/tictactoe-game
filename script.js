@@ -7,6 +7,7 @@ import {
     remove,
     onValue
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
 // ফোনের ব্রাউজারে সরাসরি সাউন্ড ফাইল আনলক করার কোড
 document.addEventListener("touchstart", function() {
     ["click.mp3", "draw.mp3", "win.mp3"].forEach(file => {
@@ -17,6 +18,7 @@ document.addEventListener("touchstart", function() {
         }).catch(() => {});
     });
 }, { once: true });
+
 // ======================================================
 // TIC TAC TOE PRO V3
 // PART-1
@@ -261,7 +263,7 @@ let mySymbol = "";
 let lastTurnPlayer = "";
 
 
-// Game Start হয়েছে?
+// Game Start হয়েছে?
 let gameStarted = false;
 
 // Animation চলছে?
@@ -408,16 +410,16 @@ hardBtn.addEventListener("click", () => {
 
 
 // -----------------------------
-// Back Button
+// Back Button (from difficulty screen)
 // -----------------------------
 
-backBtn.addEventListener("click", () => {
-    history.pushState({ inGame: true }, "");
-
-    difficultyScreen.style.display = "none";
-    homeScreen.style.display = "flex";
-
-});
+const backBtn = document.getElementById("backBtn");
+if(backBtn) {
+    backBtn.addEventListener("click", () => {
+        difficultyScreen.style.display = "none";
+        homeScreen.style.display = "flex";
+    });
+}
 
 // ======================================================
 // UTILITY FUNCTIONS
@@ -588,7 +590,7 @@ function autoRandomMove() {
 function changePlayer() {
     if (!running) return;
 
-    // প্লেয়ার পরিবর্তন
+    // প্লেয়ার পরিবর্তন
     currentPlayer = currentPlayer === "X" ? "O" : "X";
 
     // Status Text Update
@@ -610,7 +612,8 @@ function changePlayer() {
             aiMove();
         }, 500);
     }
-}// --------------------------------
+}
+// --------------------------------
 // Add Click Event
 // --------------------------------
 
@@ -627,7 +630,7 @@ cells.forEach(cell => {
 
 function cellClicked() {
 
-    // কোন Cell এ Click হয়েছে
+    // কোন Cell এ Click হয়েছে
 
     const index = Number(this.dataset.index);
 
@@ -708,7 +711,7 @@ function checkWinner() {
 
     }
 
-    // যদি Win হয়
+    // যদি Win হয়
 
     if (won) {
 
@@ -756,7 +759,7 @@ function checkWinner() {
 
     }
 
-    // যদি Draw হয়
+    // যদি Draw হয়
 
    if (!board.includes("")) {
 
@@ -806,7 +809,7 @@ function restartGame() {
     statusText.textContent =
     "Player X Turn";
 
-    // Friend ছাড়া Timer
+    // Friend ছাড়া Timer
 
     if (
         gameMode === "ai" ||
@@ -894,7 +897,7 @@ function aiMove() {
 
     }
 
-    // Move পাওয়া না গেলে Return
+    // Move পাওয়া না গেলে Return
 
     if (move === -1) return;
 
@@ -1601,7 +1604,7 @@ function startRoomListener() {
 
         statusText.textContent = "Player " + currentPlayer + " Turn";
 
-        // কেবল প্লেয়ার পরিবর্তন হলেই টাইমার ক্লিয়ার হয়ে নতুন ১৫ সেকেন্ড চালু হবে
+        // কেবল প্লেয়ার পরিবর্তন হলেই টাইমার ক্লিয়ার হয়ে নতুন ১৫ সেকেন্ড চালু হবে
         if (running && currentPlayer !== lastTurnPlayer) {
             lastTurnPlayer = currentPlayer;
             startTimer();
@@ -1824,326 +1827,24 @@ async()=>{
     }
 
 });
+
 // ======================================================
-// FINAL CONTROLS
-// PART-8A
+// PHONE BACK BUTTON HANDLER (BACK BUTTON FIX)
 // ======================================================
-
-
-// =======================================
-// Restart Button
-// =======================================
-
-restartBtn.addEventListener("click", () => {
-    console.log("Restart Button Clicked");
-
-    // Friend Mode
-
-    if (gameMode === "friend") {
-
-        restartGame();
-
-    }
-
-    // AI Mode
-
-    else if (gameMode === "ai") {
-
-        restartGame();
-
-    }
-
-    // Online Mode
-
-    else {
-
-        playAgainOnline();
-
-    }
-
-});
-// =======================================
-// Play Again Online
-// =======================================
-
-async function playAgainOnline() {
-
-    if (currentRoom === "") return;
-
-    let roomRef =
-
-    ref(db, "rooms/" + currentRoom);
-
-    if (mySymbol === "X") {
-
-        await update(roomRef, {
-
-            playAgainX: true
-
-        });
-
-    }
-
-    else {
-
-        await update(roomRef, {
-
-            playAgainO: true
-
-        });
-
-    }
-
-}
-// =======================================
-// Home Button
-// =======================================
-
-homeBtn.addEventListener("click", async () => {
-
-    stopTimer();
-
-    gameScreen.style.display = "none";
-
-    difficultyScreen.style.display = "none";
-
-    onlineScreen.style.display = "none";
-
-    homeScreen.style.display = "flex";
-
-    chatContainer.style.display = "none";
-
-    roomInfo.style.display = "none";
-
-    currentRoom = "";
-
-    mySymbol = "";
-
-    gameMode = "friend";
-
-});
 window.addEventListener("popstate", function (event) {
-    const gameScreen = document.getElementById("gameScreen");
-    const onlineScreen = document.getElementById("onlineScreen");
-    
-    if ((gameScreen && gameScreen.style.display !== "none") || 
-        (onlineScreen && onlineScreen.style.display !== "none")) {
-        
-        // 🔽 বাংলা লেখার জায়গায় এই ইংরেজি টেক্সটটি বসিয়ে দাও
+    // গেম স্ক্রিন বা অনলাইন স্ক্রিন দৃশ্যমান থাকলে কনফার্মেশন পপ-আপ দেখাবে
+    const isGameActive = 
+        (gameScreen && gameScreen.style.display !== "none") ||
+        (onlineScreen && onlineScreen.style.display !== "none") ||
+        (difficultyScreen && difficultyScreen.style.display !== "none");
+
+    if (isGameActive) {
         let confirmExit = confirm("Are you sure you want to leave the game and go to the main menu?");
         
         if (confirmExit) {
-            location.reload(); 
+            location.reload(); // 'OK' দিলে রিলোড হয়ে হোম পেজে যাবে
         } else {
-            history.pushState({ inGame: true }, ""); 
+            history.pushState({ inGame: true }, ""); // 'Cancel' করলে আবার স্টেট ঠিক রাখবে
         }
     }
 });
-// =======================================
-// Reset Score
-// =======================================
-
-resetScoreBtn.addEventListener("click", () => {
-
-    xScore = 0;
-
-    oScore = 0;
-
-    updateScore();
-
-});
-// =======================================
-// Theme
-// =======================================
-
-themeBtn.addEventListener("click", () => {
-
-    document.body.classList.toggle("dark");
-
-});
-// ======================================================
-// FINAL STARTUP
-// PART-8B
-// ======================================================
-
-
-// =======================================
-// Page Load
-// =======================================
-
-window.addEventListener("load", () => {
-
-    // Score Load
-
-    updateScore();
-
-    // Timer Reset
-
-    resetTimers();
-
-    // Board Reset
-
-    clearBoard();
-
-    // Game Stop
-
-    running = false;
-
-    // Default Status
-
-    statusText.textContent =
-    "Select Game Mode";
-
-});
-
-
-// =======================================
-// Theme Load
-// =======================================
-
-const savedTheme =
-
-localStorage.getItem("theme");
-
-if (savedTheme === "dark") {
-
-    document.body.classList.add("dark");
-
-}
-
-
-// =======================================
-// Theme Save
-// =======================================
-
-themeBtn.addEventListener("click", () => {
-
-    if (
-
-        document.body.classList.contains("dark")
-
-    ) {
-
-        localStorage.setItem(
-
-            "theme",
-
-            "dark"
-
-        );
-
-    }
-
-    else {
-
-        localStorage.setItem(
-
-            "theme",
-
-            "light"
-
-        );
-
-    }
-
-});
-
-
-// =======================================
-// Auto Scroll Chat
-// =======================================
-
-function scrollChatBottom() {
-
-    chatMessages.scrollTop =
-
-    chatMessages.scrollHeight;
-
-}
-
-
-// =======================================
-// Disable Text Selection
-// =======================================
-
-document.addEventListener(
-
-    "selectstart",
-
-    (e) => {
-
-        e.preventDefault();
-
-    }
-
-);
-
-
-// =======================================
-// Disable Right Click (Optional)
-// =======================================
-
-document.addEventListener(
-
-    "contextmenu",
-
-    (e) => {
-
-        e.preventDefault();
-
-    }
-
-);
-
-
-// =======================================
-// Console Message
-// =======================================
-
-console.log(
-
-    "🎮 Tic Tac Toe Pro V3 Loaded Successfully"
-
-);
-// ==========================================
-// AUDIO SYSTEM FOR MOBILE BROWSERS
-// ==========================================
-
-// সাউন্ড প্লে করার মূল ফাংশন
-function playSound(audioId) {
-    const sound = document.getElementById(audioId);
-    if (sound) {
-        sound.currentTime = 0;
-        sound.play().catch(err => console.log("Audio play error:", err));
-    }
-}
-
-// ফোনের ব্রাউজারে প্রথম ক্লিকেই সব সাউন্ড পারমিশন আনলক করার কোড
-document.addEventListener('click', () => {
-    ['clickSound', 'winSound', 'drawSound'].forEach(id => {
-        const sound = document.getElementById(id);
-        if (sound) {
-            sound.play().then(() => {
-                sound.pause();
-                sound.currentTime = 0;
-            }).catch(() => {});
-        }
-    });
-}, { once: true });
-// =========================
-// LIGHT / DARK MODE TOGGLE
-// =========================
-// const তুলে দিয়ে সরাসরি themeBtn ব্যবহার করো অথবা আলাদা ভ্যারিয়েবল নাম দাও
-let themeToggler = document.getElementById('themeBtn');
-
-if (themeToggler) {
-    themeToggler.onclick = () => {
-        document.body.classList.toggle('light-mode');
-        
-        if (document.body.classList.contains('light-mode')) {
-            themeToggler.innerText = '☀️ Light Mode';
-        } else {
-            themeToggler.innerText = '🌙 Dark Mode';
-        }
-    };
-}
