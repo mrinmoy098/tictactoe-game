@@ -507,36 +507,85 @@ html, body {
     box-sizing: border-box;
 }
 
-/* ৩. টিক-ট্যাক-টো বোর্ডকে মোবাইলের প্রস্থ অনুযায়ী বড় করা */
+/* ==========================================
+   CENTERED & COMPACT MOBILE FULL COVER LAYOUT
+   ========================================== */
+
+/* ১. ব্রাউজার ও বডির ডিফল্ট সেটিং */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    touch-action: manipulation;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* ২. স্ক্রিনগুলোকে স্ক্রিনের একদম মাঝখানে একত্রে রাখা */
+#homeScreen, 
+#difficultyScreen, 
+#onlineScreen, 
+#gameScreen {
+    width: 100%;
+    max-width: 420px;
+    height: 100%;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* মাঝখানে ধরে রাখবে, ফাঁকা ছড়াবে না */
+    align-items: center;
+    gap: 15px; /* উপাদানগুলোর মাঝে হালকা মার্জিন রাখবে */
+    box-sizing: border-box;
+}
+
+/* ৩. হেডিং ও টাইটেল বড় করা */
+h1, h2, .title, #gameModeText {
+    font-size: 1.8rem !important;
+    text-align: center;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+/* ৪. বাটনগুলো বড় ও চওড়া করা যাতে সহজে ট্যাপ করা যায় */
+button, .btn {
+    width: 85% !important; /* স্ক্রিনের ৮৫% চওড়া হবে */
+    max-width: 320px;
+    padding: 16px 20px !important; /* বাটনগুলো আরেকটু মোটা ও বড় দেখাবে */
+    font-size: 1.2rem !important; /* ফন্ট সাইজ বড় করা হয়েছে */
+    font-weight: 600;
+    border-radius: 12px;
+    margin: 6px 0;
+    cursor: pointer;
+}
+
+/* ৫. গেম বোর্ডের সাইজ মোবাইলের উপযোগী করা */
 .board, #board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 8px;
-    width: 90vw;            /* ফোনের চওড়ার ৯০% জায়গা নেবে */
-    max-width: 380px;       /* বেশি বড় স্ক্রিনে যেন ভেঙে না যায় */
-    height: 90vw;           /* স্কয়ার শেপ রাখার জন্য */
-    max-height: 380px;
-    margin: 10px auto;
+    gap: 10px;
+    width: 88vw;
+    max-width: 360px;
+    height: 88vw;
+    max-height: 360px;
+    margin: 15px auto;
 }
 
-/* ৪. ঘরের (Cell) ভেতরের ফ্রন্ট সাইজ ঠিক করা */
+/* ৬. ঘরের (Cell) ভেতরের চিহ্ন (X / O) বড় দেখানোর জন্য */
 .cell {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem; /* X এবং O লেখা বড় দেখাবে */
+    font-size: 2.8rem !important;
     font-weight: bold;
-}
-
-/* ৫. বাটনগুলোকে ফোনের স্ক্রিনে বড় ও সহজে ট্যাপ করার উপযোগী করা */
-button {
-    width: 85vw;
-    max-width: 320px;
-    padding: 14px 20px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    margin: 6px 0;
 }
