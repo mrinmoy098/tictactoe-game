@@ -645,25 +645,18 @@ function cellClicked() {
 // --------------------------------
 
 function updateCell(index) {
-
-    // Board Update
-
     board[index] = currentPlayer;
-
-    // Screen Update
-
     cells[index].textContent = currentPlayer;
 
-    // Click Sound
-
-    clickSound.currentTime = 0;
-
-    clickSound.play();
-
-    // Winner Check
+    // Ensure the element exists and has a source before playing
+    if (clickSound && clickSound.readyState >= 1) { 
+        clickSound.currentTime = 0;
+        clickSound.play().catch(error => {
+            console.error("Playback failed:", error);
+        });
+    }
 
     checkWinner();
-
 }
 // --------------------------------
 // Winner Check
