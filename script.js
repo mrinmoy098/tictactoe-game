@@ -156,6 +156,10 @@ document.getElementById("xTimer");
 const oTimerText =
 document.getElementById("oTimer");
 
+// Ensure audio objects have valid source paths
+const clickSound = new Audio('assets/sounds/click.mp3');
+const winSound = new Audio('assets/sounds/win.mp3'); 
+const drawSound = new Audio('assets/sounds/draw.mp3');
 
 // ==============================
 // GAME START OVERLAY
@@ -663,13 +667,10 @@ function updateCell(index) {
 // --------------------------------
 
 function checkWinner() {
-
     let won = false;
-
     let winPattern = [];
 
     for (let pattern of winPatterns) {
-
         const a = board[pattern[0]];
         const b = board[pattern[1]];
         const c = board[pattern[2]];
@@ -677,87 +678,54 @@ function checkWinner() {
         if (a === "") continue;
 
         if (a === b && b === c) {
-
             won = true;
-
             winPattern = pattern;
-
             break;
-
         }
-
     }
-
-    // যদি Win হয়
 
     if (won) {
-
         running = false;
-
         stopTimer();
-
-        // Highlight
 
         winPattern.forEach(index => {
-
             cells[index].classList.add("win");
-
         });
 
-        // Status
+        statusText.textContent = "🎉 Player " + currentPlayer + " Wins!";
 
-        statusText.textContent =
-        "🎉 Player " + currentPlayer + " Wins!";
-
-        // Sound
-
-        winSound.currentTime = 0;
-
-        winSound.play();
-
-        // Score
+        // ==================== WIN SOUND CHECK ====================
+        if (winSound.readyState >= 2) { // Check if enough data is loaded
+            winSound.currentTime = 0;
+            winSound.play().catch(e => console.error("Playback failed:", e));
+        }
+        // =========================================================
 
         if (currentPlayer === "X") {
-
             xScore++;
-
-        }
-
-        else {
-
+        } else {
             oScore++;
-
         }
-
         updateScore();
-
         return;
-
     }
-
-    // যদি Draw হয়
 
     if (!board.includes("")) {
-
         running = false;
-
         stopTimer();
+        statusText.textContent = "🤝 Match Draw";
 
-        statusText.textContent =
-        "🤝 Match Draw";
-
-        drawSound.currentTime = 0;
-
-        drawSound.play();
-
+        // ==================== DRAW SOUND CHECK ====================
+        if (drawSound.readyState >= 2) { // Check if enough data is loaded
+            drawSound.currentTime = 0;
+            drawSound.play().catch(e => console.error("Playback failed:", e));
+        }
+        // ==========================================================
+        
         return;
-
     }
 
-    // পরের Player
-
     changePlayer();
-
 }
 // --------------------------------
 // Restart Game
