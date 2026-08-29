@@ -41,7 +41,7 @@ html, body {
     padding: 20px 15px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* মাঝখানে জমাটবদ্ধ রাখবে */
+    justify-content: center;
     align-items: center;
     gap: 12px;
 }
@@ -121,7 +121,7 @@ button:hover, .btn:hover {
     box-shadow: 0 0 18px #00ff99;
 }
 
-/* হোম, ডিফিকাল্টি ও অনলাইন পেজের বড় বাটন */
+/* হোম, ডিফিকাল্টি ও অনলাইন পেজের বড় বাটন */
 #homeScreen button,
 #difficultyScreen button,
 #onlineScreen button {
@@ -146,7 +146,7 @@ button:hover, .btn:hover {
 }
 
 /* ==========================================
-   GAME PLAY AREA & BOARD
+   GAME PLAY AREA & BOARD (UPDATED FOR FIT)
    ========================================== */
 
 .scoreboard {
@@ -181,16 +181,16 @@ button:hover, .btn:hover {
     flex: 1;
 }
 
-/* গেম বোর্ড */
+/* ফোনে গেম বোর্ড বড় এবং সুন্দর স্কয়ার ফিট করার কোড */
 .board, #board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 10px;
-    width: 85vw;
-    max-width: 340px;
-    height: 85vw;
-    max-height: 340px;
+    width: 92vw;
+    max-width: 380px;
+    height: 92vw;
+    max-height: 380px;
     margin: 10px auto;
 }
 
@@ -215,27 +215,29 @@ button:hover, .btn:hover {
 }
 
 /* ==========================================
-   BOTTOM GAME BUTTONS
+   BOTTOM GAME BUTTONS (ALIGNED WITH BOARD)
    ========================================== */
 
+/* বাটনগুলোকে ২ কলামের গ্রিডে বোর্ডের সাথে নিখুঁতভাবে মেলানো হয়েছে */
 .bottomButtons {
-    width: 100%;
+    width: 92vw;
     max-width: 380px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
     margin-bottom: 10px;
 }
 
 .bottomButtons button {
-    flex: 1;
-    max-width: 100px;
-    height: 42px !important;
-    font-size: 0.85rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 48px !important;
+    font-size: 0.95rem !important;
     font-weight: bold;
-    padding: 0 !important;
+    padding: 0 5px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ==========================================
@@ -243,8 +245,8 @@ button:hover, .btn:hover {
    ========================================== */
 
 #chatContainer {
-    width: 100%;
-    max-width: 340px;
+    width: 92vw;
+    max-width: 380px;
     height: 140px;
     background: #20293a;
     border: 2px solid #00ff99;
@@ -393,11 +395,11 @@ body.light-mode .cell:hover { background: #bae6fd !important; }
 body.light-mode #chatContainer { background: #ffffff !important; border-color: #0284c7 !important; color: #0f172a !important; }
 body.light-mode #chatMessages { border-color: #cbd5e1 !important; color: #0f172a !important; }
 body.light-mode .timerBox, body.light-mode .status, body.light-mode #gameModeText { color: #0369a1 !important; }
+
 /* ==========================================
    BUTTON CLICK & Z-INDEX FIX
    ========================================== */
 
-/* ১. বাটনগুলোকে সব লেয়ারের উপরে আনা যাতে ক্লিকে বাধা না আসে */
 .bottomButtons, 
 .bottomButtons button, 
 #homeScreen button, 
@@ -409,7 +411,6 @@ body.light-mode .timerBox, body.light-mode .status, body.light-mode #gameModeTex
     cursor: pointer !important;
 }
 
-/* ২. গেম স্টার্ট ওভারলে যখন হাইড থাকবে তখন যেন ক্লিকে বাধা না দেয় */
 #gameStartOverlay:not([style*="display: flex"]) {
     pointer-events: none !important;
 }
