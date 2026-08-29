@@ -1,398 +1,390 @@
 /* ==========================================
-   RESET & GLOBAL STYLES
-   ========================================== */
+   RESET & GLOBAL STYLES
+   ========================================== */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    touch-action: manipulation;
-    background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden !important; /* স্ক্রোল পুরোপুরি বন্ধ */
+    touch-action: manipulation;
+    background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 *, *:before, *:after {
-    box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 /* ==========================================
-   ALL SCREENS CONTAINER
-   ========================================== */
+   ALL SCREENS CONTAINER
+   ========================================== */
 
-.screen, 
-#homeScreen, 
-#difficultyScreen, 
+.screen, 
+#homeScreen, 
+#difficultyScreen, 
 #onlineScreen {
-    width: 100%;
-    max-width: 420px;
-    min-height: 100vh;
-    padding: 20px 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    height: 100%;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* মাঝখানে জমাটবদ্ধ রাখবে */
+    align-items: center;
+    gap: 12px;
 }
 
 #gameScreen {
-    width: 100%;
-    max-width: 420px;
-    height: 100vh;
-    max-height: 850px;
-    padding: 12px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* ==========================================
-   TYPOGRAPHY & HEADINGS
-   ========================================== */
+   TYPOGRAPHY & HEADINGS
+   ========================================== */
 
 h1 {
-    font-size: 1.8rem;
-    color: white;
-    text-shadow: 0 0 15px #00ff99;
-    text-align: center;
-    margin-bottom: 2px;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 0 0 15px #00ff99;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 h2 {
-    font-size: 1.5rem;
-    text-shadow: 0 0 12px #00ff99;
-    text-align: center;
+    font-size: 1.8rem;
+    text-shadow: 0 0 12px #00ff99;
+    text-align: center;
 }
 
 #gameModeText {
-    color: #ffd54f;
-    font-size: 1rem;
-    text-align: center;
+    color: #ffd54f;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 .status {
-    color: #00ff99;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-align: center;
+    color: #00ff99;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 #roomInfo {
-    font-size: 1rem;
-    text-align: center;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 /* ==========================================
-   BUTTONS (HOME / DIFFICULTY / ONLINE)
-   ========================================== */
+   BUTTONS (HOME / DIFFICULTY / ONLINE)
+   ========================================== */
 
 button, .btn {
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    background: #00ff99;
-    color: #111;
-    font-weight: bold;
-    transition: 0.3s;
-    position: relative;
-    z-index: 10;
-    pointer-events: auto !important;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #00ff99;
+    color: #111;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 button:hover, .btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 18px #00ff99;
+    transform: scale(1.03);
+    box-shadow: 0 0 18px #00ff99;
 }
 
+/* হোম, ডিফিকাল্টি ও অনলাইন পেজের বড় বাটন */
 #homeScreen button,
 #difficultyScreen button,
 #onlineScreen button {
-    width: 85% !important;
-    max-width: 320px;
-    height: 52px !important;
-    font-size: 1.1rem !important;
-    margin: 5px 0;
+    width: 85% !important;
+    max-width: 320px;
+    height: 58px !important;
+    font-size: 1.2rem !important;
+    margin: 6px 0;
 }
 
 #roomCode {
-    width: 85%;
-    max-width: 320px;
-    height: 48px;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    text-align: center;
-    margin: 8px 0;
-    color: #000;
+    width: 85%;
+    max-width: 320px;
+    height: 50px;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-align: center;
+    margin: 10px 0;
 }
 
 /* ==========================================
-   GAME PLAY AREA & BOARD
-   ========================================== */
+   GAME PLAY AREA & BOARD
+   ========================================== */
 
 .scoreboard {
-    width: 100%;
-    max-width: 380px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5px;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
 }
 
 .playerScore {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 1.1rem;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .timerBox {
-    color: #00ff99;
-    font-size: 1rem;
+    color: #00ff99;
+    font-size: 1.1rem;
 }
 
 .gameArea {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
 }
 
-/* বোর্ড সাইজ রেসপন্সিভ ও বড় করা হলো */
+/* গেম বোর্ড */
 .board, #board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 8px;
-    width: 88vw;
-    max-width: 340px;
-    height: 88vw;
-    max-height: 340px;
-    margin: 5px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    width: 85vw;
+    max-width: 340px;
+    height: 85vw;
+    max-height: 340px;
+    margin: 10px auto;
 }
 
 .cell {
-    width: 100%;
-    height: 100%;
-    background: #1f2937;
-    border: 3px solid #00ff99;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
+    width: 100%;
+    height: 100%;
+    background: #1f2937;
+    border: 3px solid #00ff99;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
 }
 
 .cell:hover {
-    transform: scale(1.03);
-    background: #273449;
+    transform: scale(1.03);
+    background: #273449;
 }
 
 /* ==========================================
-   BOTTOM GAME BUTTONS
-   ========================================== */
+   BOTTOM GAME BUTTONS
+   ========================================== */
 
 .bottomButtons {
-    width: 88vw;
-    max-width: 340px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-bottom: 5px;
-    position: relative;
-    z-index: 100;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
 }
 
 .bottomButtons button {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 42px !important;
-    font-size: 0.85rem !important;
-    font-weight: bold;
-    padding: 0 !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex: 1;
+    max-width: 100px;
+    height: 42px !important;
+    font-size: 0.85rem !important;
+    font-weight: bold;
+    padding: 0 !important;
 }
 
 /* ==========================================
-   CHAT CONTAINER
-   ========================================== */
+   CHAT CONTAINER
+   ========================================== */
 
 #chatContainer {
-    width: 88vw;
-    max-width: 340px;
-    height: 110px;
-    background: #20293a;
-    border: 2px solid #00ff99;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    padding: 6px;
-    margin-bottom: 5px;
+    width: 100%;
+    max-width: 340px;
+    height: 140px;
+    background: #20293a;
+    border: 2px solid #00ff99;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
 }
 
 #chatContainer h3 {
-    text-align: center;
-    margin-bottom: 2px;
-    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
 }
 
 #chatMessages {
-    flex: 1;
-    overflow-y: auto;
-    border: 1px solid #666;
-    border-radius: 6px;
-    padding: 4px;
-    margin-bottom: 4px;
-    font-size: 0.75rem;
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #666;
+    border-radius: 8px;
+    padding: 6px;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
 }
 
 .chatInputArea {
-    display: flex;
-    gap: 4px;
+    display: flex;
+    gap: 6px;
 }
 
 #chatInput {
-    flex: 1;
-    height: 28px;
-    padding: 4px;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    font-size: 0.8rem;
+    flex: 1;
+    height: 32px;
+    padding: 6px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
 }
 
 #sendChatBtn {
-    width: 55px !important;
-    height: 28px !important;
-    font-size: 0.75rem !important;
-    padding: 0 !important;
+    width: 65px !important;
+    height: 32px !important;
+    font-size: 0.8rem !important;
+    padding: 0 !important;
 }
 
 /* ==========================================
-   WINNING ANIMATION & OVERLAY
-   ========================================== */
+   WINNING ANIMATION & OVERLAY
+   ========================================== */
 
 .win {
-    background: #4CAF50 !important;
-    animation: winnerGlow .8s infinite alternate;
+    background: #4CAF50 !important;
+    animation: winnerGlow .8s infinite alternate;
 }
 
 @keyframes winnerGlow {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); box-shadow: 0 0 20px #00ff99; }
+    from { transform: scale(1); }
+    to { transform: scale(1.05); box-shadow: 0 0 20px #00ff99; }
 }
 
 #gameStartOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0,0,0,.65);
-    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.65);
+    z-index: 9999;
 }
 
 #gameStartOverlay h1 {
-    font-size: 3rem;
-    color: #00ff99;
-    text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
-    animation: gameStartAnim 2s forwards;
+    font-size: 3.5rem;
+    color: #00ff99;
+    text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
+    animation: gameStartAnim 2s forwards;
 }
 
 @keyframes gameStartAnim {
-    0% { transform: scale(.2); opacity: 0; }
-    35% { transform: scale(1.3); opacity: 1; }
-    70% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(2); opacity: 0; }
+    0% { transform: scale(.2); opacity: 0; }
+    35% { transform: scale(1.3); opacity: 1; }
+    70% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
 }
 
 /* Speech Bubbles */
 .player-box { position: relative; }
 
 .speech-bubble {
-    position: absolute;
-    top: -38px;
-    background-color: #ffd500;
-    color: #000000;
-    padding: 4px 10px;
-    border-radius: 14px;
-    font-weight: bold;
-    font-size: 11px;
-    border: 2px solid #000000;
-    white-space: nowrap;
-    z-index: 999;
-    display: none;
-    animation: popIn 0.25s ease-out;
+    position: absolute;
+    top: -42px;
+    background-color: #ffd500;
+    color: #000000;
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-weight: bold;
+    font-size: 12px;
+    border: 2px solid #000000;
+    white-space: nowrap;
+    z-index: 999;
+    display: none;
+    animation: popIn 0.25s ease-out;
 }
 
 .bubble-x { left: 0; }
 .bubble-x::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 10px;
-    border-width: 6px 6px 0;
-    border-style: solid;
-    border-color: #ffd500 transparent;
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 12px;
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: #ffd500 transparent;
 }
 
 .bubble-y { right: 0; }
 .bubble-y::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    right: 10px;
-    border-width: 6px 6px 0;
-    border-style: solid;
-    border-color: #ffd500 transparent;
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 12px;
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: #ffd500 transparent;
 }
 
 @keyframes popIn {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 /* ==========================================
-   LIGHT MODE OVERRIDE
-   ========================================== */
+   LIGHT MODE OVERRIDE
+   ========================================== */
 
 body.light-mode {
-    background: #e2e8f0 !important;
-    color: #0f172a !important;
+    background: #e2e8f0 !important;
+    color: #0f172a !important;
 }
 
 body.light-mode h1 { color: #0f172a !important; text-shadow: none !important; }
@@ -401,11 +393,24 @@ body.light-mode .cell:hover { background: #bae6fd !important; }
 body.light-mode #chatContainer { background: #ffffff !important; border-color: #0284c7 !important; color: #0f172a !important; }
 body.light-mode #chatMessages { border-color: #cbd5e1 !important; color: #0f172a !important; }
 body.light-mode .timerBox, body.light-mode .status, body.light-mode #gameModeText { color: #0369a1 !important; }
-
 /* ==========================================
-   CLICK FIX FOR OVERLAYS & BUTTONS
-   ========================================== */
+   BUTTON CLICK & Z-INDEX FIX
+   ========================================== */
 
-#gameStartOverlay:not([style*="display: flex"]) {
-    pointer-events: none !important;
+/* ১. বাটনগুলোকে সব লেয়ারের উপরে আনা যাতে ক্লিকে বাধা না আসে */
+.bottomButtons, 
+.bottomButtons button, 
+#homeScreen button, 
+#difficultyScreen button, 
+#onlineScreen button {
+    position: relative !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
+
+/* ২. গেম স্টার্ট ওভারলে যখন হাইড থাকবে তখন যেন ক্লিকে বাধা না দেয় */
+#gameStartOverlay:not([style*="display: flex"]) {
+    pointer-events: none !important;
+}
+akhon ata ache ata ke thik koro
