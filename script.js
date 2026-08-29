@@ -1,22 +1,12 @@
 import { db } from "./firebase.js";
 import {
-    ref,
-    set,
-    get,
-    update,
-    remove,
-    onValue
+    ref,
+    set,
+    get,
+    update,
+    remove,
+    onValue
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-// ফোনের ব্রাউজারে সরাসরি সাউন্ড ফাইল আনলক করার কোড
-document.addEventListener("touchstart", function() {
-    ["click.mp3", "draw.mp3", "win.mp3"].forEach(file => {
-        const a = new Audio(file);
-        a.play().then(() => {
-            a.pause();
-            a.currentTime = 0;
-        }).catch(() => {});
-    });
-}, { once: true });
 // ======================================================
 // TIC TAC TOE PRO V3
 // PART-1
@@ -193,9 +183,9 @@ document.getElementById("gameModeText");
 
 // 3×3 Board
 let board = [
-    "", "", "",
-    "", "", "",
-    "", "", ""
+    "", "", "",
+    "", "", "",
+    "", "", ""
 ];
 
 
@@ -261,7 +251,7 @@ let mySymbol = "";
 let lastTurnPlayer = "";
 
 
-// Game Start হয়েছে?
+// Game Start হয়েছে?
 let gameStarted = false;
 
 // Animation চলছে?
@@ -274,15 +264,15 @@ let gameStartAnimation = false;
 
 // Click Sound
 const clickSound =
-new Audio("click.mp3");
+new Audio("assets/sounds/click.mp3");
 
 // Win Sound
 const winSound =
-new Audio("win.mp3");
+new Audio("assets/sounds/win.mp3");
 
 // Draw Sound
 const drawSound =
-new Audio("draw.mp3");
+new Audio("assets/sounds/draw.mp3");
 
 
 // Volume
@@ -297,16 +287,16 @@ drawSound.volume = 0.6;
 
 const winPatterns = [
 
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
 
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
 
-    [0,4,8],
-    [2,4,6]
+    [0,4,8],
+    [2,4,6]
 
 ];
 // ======================================================
@@ -336,16 +326,15 @@ oTimerText.textContent = "⏱️15";
 // -----------------------------
 
 playFriend.addEventListener("click", () => {
-    history.pushState({ inGame: true }, "");
 
-    gameMode = "friend";
+    gameMode = "friend";
 
-    gameModeText.textContent = "Mode : Friend";
+    gameModeText.textContent = "Mode : Friend";
 
-    homeScreen.style.display = "none";
-    gameScreen.style.display = "block";
+    homeScreen.style.display = "none";
+    gameScreen.style.display = "block";
 
-    restartGame();
+    restartGame();
 
 });
 
@@ -355,10 +344,9 @@ playFriend.addEventListener("click", () => {
 // -----------------------------
 
 playAI.addEventListener("click", () => {
-    history.pushState({ inGame: true }, "");
 
-    homeScreen.style.display = "none";
-    difficultyScreen.style.display = "flex";
+    homeScreen.style.display = "none";
+    difficultyScreen.style.display = "flex";
 
 });
 
@@ -368,41 +356,38 @@ playAI.addEventListener("click", () => {
 // -----------------------------
 
 easyBtn.addEventListener("click", () => {
-    history.pushState({ inGame: true }, "");
 
-    aiDifficulty = "easy";
-    gameMode = "ai";
+    aiDifficulty = "easy";
+    gameMode = "ai";
 
-    difficultyScreen.style.display = "none";
-    gameScreen.style.display = "block";
+    difficultyScreen.style.display = "none";
+    gameScreen.style.display = "block";
 
-    restartGame();
+    restartGame();
 
 });
 
 mediumBtn.addEventListener("click", () => {
-    history.pushState({ inGame: true }, "");
 
-    aiDifficulty = "medium";
-    gameMode = "ai";
+    aiDifficulty = "medium";
+    gameMode = "ai";
 
-    difficultyScreen.style.display = "none";
-    gameScreen.style.display = "block";
+    difficultyScreen.style.display = "none";
+    gameScreen.style.display = "block";
 
-    restartGame();
+    restartGame();
 
 });
 
 hardBtn.addEventListener("click", () => {
-    history.pushState({ inGame: true }, "");
 
-    aiDifficulty = "hard";
-    gameMode = "ai";
+    aiDifficulty = "hard";
+    gameMode = "ai";
 
-    difficultyScreen.style.display = "none";
-    gameScreen.style.display = "block";
+    difficultyScreen.style.display = "none";
+    gameScreen.style.display = "block";
 
-    restartGame();
+    restartGame();
 
 });
 
@@ -412,10 +397,9 @@ hardBtn.addEventListener("click", () => {
 // -----------------------------
 
 backBtn.addEventListener("click", () => {
-    history.pushState({ inGame: true }, "");
 
-    difficultyScreen.style.display = "none";
-    homeScreen.style.display = "flex";
+    difficultyScreen.style.display = "none";
+    homeScreen.style.display = "flex";
 
 });
 
@@ -430,11 +414,11 @@ backBtn.addEventListener("click", () => {
 
 function updateScore() {
 
-    scoreX.textContent = xScore;
-    scoreO.textContent = oScore;
+    scoreX.textContent = xScore;
+    scoreO.textContent = oScore;
 
-    localStorage.setItem("xScore", xScore);
-    localStorage.setItem("oScore", oScore);
+    localStorage.setItem("xScore", xScore);
+    localStorage.setItem("oScore", oScore);
 
 }
 
@@ -445,20 +429,20 @@ function updateScore() {
 
 function clearBoard() {
 
-    board = [
-        "", "", "",
-        "", "", "",
-        "", "", ""
-    ];
+    board = [
+        "", "", "",
+        "", "", "",
+        "", "", ""
+    ];
 
-    cells.forEach(cell => {
+    cells.forEach(cell => {
 
-        cell.textContent = "";
+        cell.textContent = "";
 
-        // Winning Color Remove
-        cell.classList.remove("win");
+        // Winning Color Remove
+        cell.classList.remove("win");
 
-    });
+    });
 
 }
 
@@ -469,13 +453,13 @@ function clearBoard() {
 
 function resetBoard() {
 
-    clearBoard();
+    clearBoard();
 
-    currentPlayer = "X";
+    currentPlayer = "X";
 
-    running = true;
+    running = true;
 
-    statusText.textContent = "Player X Turn";
+    statusText.textContent = "Player X Turn";
 
 }
 
@@ -486,15 +470,15 @@ function resetBoard() {
 
 function resetTimers() {
 
-    timer = TURN_TIME;
+    timer = TURN_TIME;
 
-    xTimer = TURN_TIME;
+    xTimer = TURN_TIME;
 
-    oTimer = TURN_TIME;
+    oTimer = TURN_TIME;
 
-    xTimerText.textContent = "⏱️15";
+    xTimerText.textContent = "⏱️15";
 
-    oTimerText.textContent = "⏱️15";
+    oTimerText.textContent = "⏱️15";
 
 }
 
@@ -505,7 +489,7 @@ function resetTimers() {
 
 function stopTimer() {
 
-    clearInterval(timerInterval);
+    clearInterval(timerInterval);
 
 }
 // ======================================================
@@ -516,107 +500,107 @@ function stopTimer() {
 // Update Timer UI
 // ------------------------------
 function updateTimer() {
-    if (currentPlayer === "X") {
-        xTimerText.textContent = "⏱️" + timer;
-        oTimerText.textContent = "⏱️15"; // Opponent Fixed at 15
-    } else {
-        oTimerText.textContent = "⏱️" + timer;
-        xTimerText.textContent = "⏱️15"; // Opponent Fixed at 15
-    }
+    if (currentPlayer === "X") {
+        xTimerText.textContent = "⏱️" + timer;
+        oTimerText.textContent = "⏱️15"; // Opponent Fixed at 15
+    } else {
+        oTimerText.textContent = "⏱️" + timer;
+        xTimerText.textContent = "⏱️15"; // Opponent Fixed at 15
+    }
 }
 
 // ------------------------------
 // Start Timer
 // ------------------------------
 function startTimer() {
-    // Friend Mode হলে টাইমার চলবে না
-    if (gameMode === "friend") return;
+    // Friend Mode হলে টাইমার চলবে না
+    if (gameMode === "friend") return;
 
-    // আগের যেকোনো টাইমার ক্লিয়ার করা
-    clearInterval(timerInterval);
+    // আগের যেকোনো টাইমার ক্লিয়ার করা
+    clearInterval(timerInterval);
 
-    // টাইমার ১৫ সেকেন্ডে রিফ্রেশ করা
-    timer = TURN_TIME; // 15
-    updateTimer();
+    // টাইমার ১৫ সেকেন্ডে রিফ্রেশ করা
+    timer = TURN_TIME; // 15
+    updateTimer();
 
-    timerInterval = setInterval(() => {
-        timer--;
-        updateTimer();
+    timerInterval = setInterval(() => {
+        timer--;
+        updateTimer();
 
-        // ১৫ সেকেন্ড শেষ হলে Auto Move হবে
-        if (timer <= 0) {
-            clearInterval(timerInterval);
-            autoRandomMove();
-        }
-    }, 1000);
+        // ১৫ সেকেন্ড শেষ হলে Auto Move হবে
+        if (timer <= 0) {
+            clearInterval(timerInterval);
+            autoRandomMove();
+        }
+    }, 1000);
 }
 
 // ------------------------------
 // Auto Random Move (Timer Expired)
 // ------------------------------
 function autoRandomMove() {
-    if (!running || gameMode === "friend") return;
+    if (!running || gameMode === "friend") return;
 
-    // ফাঁকা Cell খোঁজা
-    let empty = [];
-    board.forEach((value, index) => {
-        if (value === "") {
-            empty.push(index);
-        }
-    });
+    // ফাঁকা Cell খোঁজা
+    let empty = [];
+    board.forEach((value, index) => {
+        if (value === "") {
+            empty.push(index);
+        }
+    });
 
-    if (empty.length === 0) return;
+    if (empty.length === 0) return;
 
-    // একটি Random ফাঁকা Cell নির্বাচন
-    const randomCell = empty[Math.floor(Math.random() * empty.length)];
+    // একটি Random ফাঁকা Cell নির্বাচন
+    const randomCell = empty[Math.floor(Math.random() * empty.length)];
 
-    // Online Mode হলে
-    if (gameMode === "online") {
-        if (currentPlayer === mySymbol) {
-            onlineMove(randomCell);
-        }
-    } 
-    // AI Mode হলে
-    else if (gameMode === "ai") {
-        updateCell(randomCell);
-    }
+    // Online Mode হলে
+    if (gameMode === "online") {
+        if (currentPlayer === mySymbol) {
+            onlineMove(randomCell);
+        }
+    } 
+    // AI Mode হলে
+    else if (gameMode === "ai") {
+        updateCell(randomCell);
+    }
 }
 
 // ------------------------------
 // Change Player
 // ------------------------------
 function changePlayer() {
-    if (!running) return;
+    if (!running) return;
 
-    // প্লেয়ার পরিবর্তন
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    // প্লেয়ার পরিবর্তন
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
 
-    // Status Text Update
-    statusText.textContent = "Player " + currentPlayer + " Turn";
+    // Status Text Update
+    statusText.textContent = "Player " + currentPlayer + " Turn";
 
-    // AI বা Online Mode হলে নতুন ১৫ সেকেন্ডের টাইমার শুরু হবে
-    if (gameMode === "ai" || gameMode === "online") {
-        startTimer();
-    } else {
-        // Friend Mode হলে টাইমার বন্ধ থাকবে এবং UI-তে 15 স্থির দেখাবে
-        stopTimer();
-        xTimerText.textContent = "⏱️15";
-        oTimerText.textContent = "⏱️15";
-    }
+    // AI বা Online Mode হলে নতুন ১৫ সেকেন্ডের টাইমার শুরু হবে
+    if (gameMode === "ai" || gameMode === "online") {
+        startTimer();
+    } else {
+        // Friend Mode হলে টাইমার বন্ধ থাকবে এবং UI-তে 15 স্থির দেখাবে
+        stopTimer();
+        xTimerText.textContent = "⏱️15";
+        oTimerText.textContent = "⏱️15";
+    }
 
-    // AI Mode-এ O-এর চাল
-    if (gameMode === "ai" && currentPlayer === "O") {
-        setTimeout(() => {
-            aiMove();
-        }, 500);
-    }
+    // AI Mode-এ O-এর চাল
+    if (gameMode === "ai" && currentPlayer === "O") {
+        setTimeout(() => {
+            aiMove();
+        }, 500);
+    }
 }// --------------------------------
 // Add Click Event
 // --------------------------------
 
 cells.forEach(cell => {
 
-    cell.addEventListener("click", cellClicked);
+    cell.addEventListener("click", cellClicked);
 
 });
 
@@ -627,31 +611,31 @@ cells.forEach(cell => {
 
 function cellClicked() {
 
-    // কোন Cell এ Click হয়েছে
+    // কোন Cell এ Click হয়েছে
 
-    const index = Number(this.dataset.index);
+    const index = Number(this.dataset.index);
 
-    // Game Stop থাকলে Return
+    // Game Stop থাকলে Return
 
-    if (!running) return;
+    if (!running) return;
 
-    // Cell আগে থেকেই Filled হলে Return
+    // Cell আগে থেকেই Filled হলে Return
 
-    if (board[index] !== "") return;
+    if (board[index] !== "") return;
 
-    // Online Mode এখানে Handle হবে
+    // Online Mode এখানে Handle হবে
 
-    if (gameMode === "online") {
+    if (gameMode === "online") {
 
-        onlineMove(index);
+        onlineMove(index);
 
-        return;
+        return;
 
-    }
+    }
 
-    // Cell Update
+    // Cell Update
 
-    updateCell(index);
+    updateCell(index);
 
 }
 
@@ -662,21 +646,24 @@ function cellClicked() {
 
 function updateCell(index) {
 
-    // Board Update
-    board[index] = currentPlayer;
+    // Board Update
 
-    // Screen Update
-    cells[index].textContent = currentPlayer;
+    board[index] = currentPlayer;
 
-    // Click Sound
-    const clickSound = document.getElementById("clickSound");
-    if (clickSound) {
-        clickSound.currentTime = 0;
-        clickSound.play().catch(e => console.log(e));
-    }
+    // Screen Update
 
-    // Winner Check
-    checkWinner();
+    cells[index].textContent = currentPlayer;
+
+    // Click Sound
+
+    clickSound.currentTime = 0;
+
+    clickSound.play();
+
+    // Winner Check
+
+    checkWinner();
+
 }
 // --------------------------------
 // Winner Check
@@ -684,101 +671,99 @@ function updateCell(index) {
 
 function checkWinner() {
 
-    let won = false;
+    let won = false;
 
-    let winPattern = [];
+    let winPattern = [];
 
-    for (let pattern of winPatterns) {
+    for (let pattern of winPatterns) {
 
-        const a = board[pattern[0]];
-        const b = board[pattern[1]];
-        const c = board[pattern[2]];
+        const a = board[pattern[0]];
+        const b = board[pattern[1]];
+        const c = board[pattern[2]];
 
-        if (a === "") continue;
+        if (a === "") continue;
 
-        if (a === b && b === c) {
+        if (a === b && b === c) {
 
-            won = true;
+            won = true;
 
-            winPattern = pattern;
+            winPattern = pattern;
 
-            break;
+            break;
 
-        }
+        }
 
-    }
+    }
 
-    // যদি Win হয়
+    // যদি Win হয়
 
-    if (won) {
+    if (won) {
 
-        running = false;
+        running = false;
 
-        stopTimer();
+        stopTimer();
 
-        // Highlight
+        // Highlight
 
-        winPattern.forEach(index => {
+        winPattern.forEach(index => {
 
-            cells[index].classList.add("win");
+            cells[index].classList.add("win");
 
-        });
+        });
 
-        // Status
+        // Status
 
-        statusText.textContent =
-        "🎉 Player " + currentPlayer + " Wins!";
+        statusText.textContent =
+        "🎉 Player " + currentPlayer + " Wins!";
 
-        // Sound
+        // Sound
 
-     const winSound = document.getElementById("winSound");
-        if (winSound) {
-            winSound.currentTime = 0;
-            winSound.play().catch(e => console.log(e));
-        }
-        // Score
+        winSound.currentTime = 0;
 
-        if (currentPlayer === "X") {
+        winSound.play();
 
-            xScore++;
+        // Score
 
-        }
+        if (currentPlayer === "X") {
 
-        else {
+            xScore++;
 
-            oScore++;
+        }
 
-        }
+        else {
 
-        updateScore();
+            oScore++;
 
-        return;
+        }
 
-    }
+        updateScore();
 
-    // যদি Draw হয়
+        return;
 
-   if (!board.includes("")) {
+    }
 
-    running = false;
+    // যদি Draw হয়
 
-    stopTimer();
+    if (!board.includes("")) {
 
-    statusText.textContent = 
-    "🤝 Match Draw";
+        running = false;
 
-    const drawSound = document.getElementById("drawSound");
-    if (drawSound) {
-        drawSound.currentTime = 0;
-        drawSound.play().catch(e => console.log(e));
-    }
+        stopTimer();
 
-    return;
+        statusText.textContent =
+        "🤝 Match Draw";
 
-}
-    // পরের Player
+        drawSound.currentTime = 0;
 
-    changePlayer();
+        drawSound.play();
+
+        return;
+
+    }
+
+    // পরের Player
+
+    changePlayer();
 
 }
 // --------------------------------
@@ -787,35 +772,35 @@ function checkWinner() {
 
 function restartGame() {
 
-    // Board Clear
+    // Board Clear
 
-    clearBoard();
+    clearBoard();
 
-    // Timer Reset
+    // Timer Reset
 
-    resetTimers();
+    resetTimers();
 
-    // Game Start
+    // Game Start
 
-    running = true;
+    running = true;
 
-    currentPlayer = "X";
+    currentPlayer = "X";
 
-    // Status
+    // Status
 
-    statusText.textContent =
-    "Player X Turn";
+    statusText.textContent =
+    "Player X Turn";
 
-    // Friend ছাড়া Timer
+    // Friend ছাড়া Timer
 
-    if (
-        gameMode === "ai" ||
-        gameMode === "online"
-    ) {
+    if (
+        gameMode === "ai" ||
+        gameMode === "online"
+    ) {
 
-        startTimer();
+        startTimer();
 
-    }
+    }
 
 }
 // ======================================================
@@ -830,77 +815,77 @@ function restartGame() {
 
 function aiMove() {
 
-    // Game শেষ হলে Return
+    // Game শেষ হলে Return
 
-    if (!running) return;
+    if (!running) return;
 
-    // AI শুধুমাত্র O হবে
+    // AI শুধুমাত্র O হবে
 
-    if (currentPlayer !== "O") return;
+    if (currentPlayer !== "O") return;
 
-    let move = -1;
+    let move = -1;
 
-    // =============================
-    // EASY AI
-    // =============================
+    // =============================
+    // EASY AI
+    // =============================
 
-    if (aiDifficulty === "easy") {
+    if (aiDifficulty === "easy") {
 
-        move = getRandomMove();
+        move = getRandomMove();
 
-    }
+    }
 
-    // =============================
-    // MEDIUM AI
-    // =============================
+    // =============================
+    // MEDIUM AI
+    // =============================
 
-    else if (aiDifficulty === "medium") {
+    else if (aiDifficulty === "medium") {
 
-        // আগে Win Try করবে
+        // আগে Win Try করবে
 
-        move = findWinningMove("O");
+        move = findWinningMove("O");
 
-        // না পেলে Block করবে
+        // না পেলে Block করবে
 
-        if (move === -1) {
+        if (move === -1) {
 
-            move = findWinningMove("X");
+            move = findWinningMove("X");
 
-        }
+        }
 
-        // Center নেবে
+        // Center নেবে
 
-        if (move === -1 && board[4] === "") {
+        if (move === -1 && board[4] === "") {
 
-            move = 4;
+            move = 4;
 
-        }
+        }
 
-        // শেষে Random
+        // শেষে Random
 
-        if (move === -1) {
+        if (move === -1) {
 
-            move = getRandomMove();
+            move = getRandomMove();
 
-        }
+        }
 
-    }
+    }
 
-    // Hard পরে হবে
+    // Hard পরে হবে
 
-    else {
+    else {
 
-        move = getBestMove();
+        move = getBestMove();
 
-    }
+    }
 
-    // Move পাওয়া না গেলে Return
+    // Move পাওয়া না গেলে Return
 
-    if (move === -1) return;
+    if (move === -1) return;
 
-    // Board Update
+    // Board Update
 
-    updateCell(move);
+    updateCell(move);
 
 }
 // --------------------------------
@@ -909,27 +894,27 @@ function aiMove() {
 
 function getRandomMove() {
 
-    let empty = [];
+    let empty = [];
 
-    board.forEach((value, index) => {
+    board.forEach((value, index) => {
 
-        if (value === "") {
+        if (value === "") {
 
-            empty.push(index);
+            empty.push(index);
 
-        }
+        }
 
-    });
+    });
 
-    if (empty.length === 0) {
+    if (empty.length === 0) {
 
-        return -1;
+        return -1;
 
-    }
+    }
 
-    return empty[
-        Math.floor(Math.random() * empty.length)
-    ];
+    return empty[
+        Math.floor(Math.random() * empty.length)
+    ];
 
 }
 // --------------------------------
@@ -938,39 +923,39 @@ function getRandomMove() {
 
 function findWinningMove(player) {
 
-    for (let pattern of winPatterns) {
+    for (let pattern of winPatterns) {
 
-        const [a, b, c] = pattern;
+        const [a, b, c] = pattern;
 
-        const values = [
+        const values = [
 
-            board[a],
-            board[b],
-            board[c]
+            board[a],
+            board[b],
+            board[c]
 
-        ];
+        ];
 
-        // দুইটা একই হলে
+        // দুইটা একই হলে
 
-        if (
+        if (
 
-            values.filter(x => x === player).length === 2 &&
+            values.filter(x => x === player).length === 2 &&
 
-            values.includes("")
+            values.includes("")
 
-        ) {
+        ) {
 
-            if (board[a] === "") return a;
+            if (board[a] === "") return a;
 
-            if (board[b] === "") return b;
+            if (board[b] === "") return b;
 
-            if (board[c] === "") return c;
+            if (board[c] === "") return c;
 
-        }
+        }
 
-    }
+    }
 
-    return -1;
+    return -1;
 
 }
 // ======================================================
@@ -985,33 +970,33 @@ function findWinningMove(player) {
 
 function checkWinnerForBoard(tempBoard){
 
-    for(let pattern of winPatterns){
+    for(let pattern of winPatterns){
 
-        const [a,b,c]=pattern;
+        const [a,b,c]=pattern;
 
-        if(
+        if(
 
-            tempBoard[a]!=="" &&
+            tempBoard[a]!=="" &&
 
-            tempBoard[a]===tempBoard[b] &&
+            tempBoard[a]===tempBoard[b] &&
 
-            tempBoard[a]===tempBoard[c]
+            tempBoard[a]===tempBoard[c]
 
-        ){
+        ){
 
-            return tempBoard[a];
+            return tempBoard[a];
 
-        }
+        }
 
-    }
+    }
 
-    if(!tempBoard.includes("")){
+    if(!tempBoard.includes("")){
 
-        return "draw";
+        return "draw";
 
-    }
+    }
 
-    return null;
+    return null;
 
 }
 
@@ -1022,19 +1007,19 @@ function checkWinnerForBoard(tempBoard){
 
 function getEmptyCells(tempBoard){
 
-    let empty=[];
+    let empty=[];
 
-    tempBoard.forEach((value,index)=>{
+    tempBoard.forEach((value,index)=>{
 
-        if(value===""){
+        if(value===""){
 
-            empty.push(index);
+            empty.push(index);
 
-        }
+        }
 
-    });
+    });
 
-    return empty;
+    return empty;
 
 }
 // --------------------------------
@@ -1043,56 +1028,56 @@ function getEmptyCells(tempBoard){
 
 function minimax(tempBoard,isMax){
 
-    let result=
-    checkWinnerForBoard(tempBoard);
+    let result=
+    checkWinnerForBoard(tempBoard);
 
-    if(result==="O") return 10;
+    if(result==="O") return 10;
 
-    if(result==="X") return -10;
+    if(result==="X") return -10;
 
-    if(result==="draw") return 0;
+    if(result==="draw") return 0;
 
-    if(isMax){
+    if(isMax){
 
-        let best=-Infinity;
+        let best=-Infinity;
 
-        for(let index of getEmptyCells(tempBoard)){
+        for(let index of getEmptyCells(tempBoard)){
 
-            tempBoard[index]="O";
+            tempBoard[index]="O";
 
-            let score=
-            minimax(tempBoard,false);
+            let score=
+            minimax(tempBoard,false);
 
-            tempBoard[index]="";
+            tempBoard[index]="";
 
-            best=Math.max(best,score);
+            best=Math.max(best,score);
 
-        }
+        }
 
-        return best;
+        return best;
 
-    }
+    }
 
-    else{
+    else{
 
-        let best=Infinity;
+        let best=Infinity;
 
-        for(let index of getEmptyCells(tempBoard)){
+        for(let index of getEmptyCells(tempBoard)){
 
-            tempBoard[index]="X";
+            tempBoard[index]="X";
 
-            let score=
-            minimax(tempBoard,true);
+            let score=
+            minimax(tempBoard,true);
 
-            tempBoard[index]="";
+            tempBoard[index]="";
 
-            best=Math.min(best,score);
+            best=Math.min(best,score);
 
-        }
+        }
 
-        return best;
+        return best;
 
-    }
+    }
 
 }
 // --------------------------------
@@ -1101,30 +1086,30 @@ function minimax(tempBoard,isMax){
 
 function getBestMove(){
 
-    let bestScore=-Infinity;
+    let bestScore=-Infinity;
 
-    let move=-1;
+    let move=-1;
 
-    for(let index of getEmptyCells(board)){
+    for(let index of getEmptyCells(board)){
 
-        board[index]="O";
+        board[index]="O";
 
-        let score=
-        minimax(board,false);
+        let score=
+        minimax(board,false);
 
-        board[index]="";
+        board[index]="";
 
-        if(score>bestScore){
+        if(score>bestScore){
 
-            bestScore=score;
+            bestScore=score;
 
-            move=index;
+            move=index;
 
-        }
+        }
 
-    }
+    }
 
-    return move;
+    return move;
 
 }
 // ======================================================
@@ -1139,11 +1124,10 @@ function getBestMove(){
 
 // Home → Online Screen
 onlineBtn.addEventListener("click", () => {
-    history.pushState({ inGame: true }, "");
 
-    homeScreen.style.display = "none";
+    homeScreen.style.display = "none";
 
-    onlineScreen.style.display = "flex";
+    onlineScreen.style.display = "flex";
 
 });
 
@@ -1151,9 +1135,9 @@ onlineBtn.addEventListener("click", () => {
 // Online → Home
 backFromOnlineBtn.addEventListener("click", () => {
 
-    onlineScreen.style.display = "none";
+    onlineScreen.style.display = "none";
 
-    homeScreen.style.display = "flex";
+    homeScreen.style.display = "flex";
 
 });
 
@@ -1168,82 +1152,81 @@ createRoomBtn.addEventListener("click", createRoom);
 // Create Room Function
 
 async function createRoom() {
-    history.pushState({ inGame: true }, "");
 
-    // Random Room Code
+    // Random Room Code
 
-    const roomId =
+    const roomId =
 
-        Math.random()
+        Math.random()
 
-        .toString(36)
+        .toString(36)
 
-        .substring(2,8)
+        .substring(2,8)
 
-        .toUpperCase();
+        .toUpperCase();
 
-    currentRoom = roomId;
+    currentRoom = roomId;
 
-    mySymbol = "X";
+    mySymbol = "X";
 
-    // Firebase Room
+    // Firebase Room
 
-    await set(
+    await set(
 
-        ref(db,"rooms/"+roomId),
+        ref(db,"rooms/"+roomId),
 
-        {
+        {
 
-            board:[
-                "","","",
-                "","","",
-                "","",""
-            ],
+            board:[
+                "","","",
+                "","","",
+                "","",""
+            ],
 
-            currentPlayer:"X",
+            currentPlayer:"X",
 
-            playerX:true,
+            playerX:true,
 
-            playerO:false,
+            playerO:false,
 
-            gameStarted:false,
+            gameStarted:false,
 
-            winner:"",
+            winner:"",
 
-            playAgainX:false,
+            playAgainX:false,
 
-            playAgainO:false
+            playAgainO:false
 
-        }
+        }
 
-    );
+    );
 
-    // Screen Change
+    // Screen Change
 
-    gameMode="online";
+    gameMode="online";
 
-    gameModeText.textContent="Mode : Online";
+    gameModeText.textContent="Mode : Online";
 
-    onlineScreen.style.display="none";
+    onlineScreen.style.display="none";
 
-    gameScreen.style.display="block";
+    gameScreen.style.display="block";
 
-    chatContainer.style.display="block";
+    chatContainer.style.display="block";
 
-    roomInfo.style.display="block";
+    roomInfo.style.display="block";
 
-    roomCodeText.textContent=roomId;
+    roomCodeText.textContent=roomId;
 
-    copyRoomBtn.style.display="inline-block";
+    copyRoomBtn.style.display="inline-block";
 
-    resetBoard();
+    resetBoard();
 
-    running=false;
+    running=false;
 
-    statusText.textContent="⏳ Waiting for Player 2";
+    statusText.textContent="⏳ Waiting for Player 2";
 
-    startRoomListener();
-    startChatListener();
+    startRoomListener();
+    startChatListener();
 
 }
 // ======================================
@@ -1252,9 +1235,9 @@ async function createRoom() {
 
 copyRoomBtn.addEventListener("click",()=>{
 
-    navigator.clipboard.writeText(currentRoom);
+    navigator.clipboard.writeText(currentRoom);
 
-    alert("Room Code Copied");
+    alert("Room Code Copied");
 
 });
 // ======================================
@@ -1265,84 +1248,83 @@ joinRoomBtn.addEventListener("click",joinRoom);
 
 
 async function joinRoom(){
-    history.pushState({ inGame: true }, "");
 
-    const roomId=
+    const roomId=
 
-    roomCode.value
+    roomCode.value
 
-    .trim()
+    .trim()
 
-    .toUpperCase();
+    .toUpperCase();
 
-    if(roomId===""){
+    if(roomId===""){
 
-        alert("Enter Room Code");
+        alert("Enter Room Code");
 
-        return;
+        return;
 
-    }
+    }
 
-    const roomRef=
+    const roomRef=
 
-    ref(db,"rooms/"+roomId);
+    ref(db,"rooms/"+roomId);
 
-    const snapshot=
+    const snapshot=
 
-    await get(roomRef);
+    await get(roomRef);
 
-    if(!snapshot.exists()){
+    if(!snapshot.exists()){
 
-        alert("Room Not Found");
+        alert("Room Not Found");
 
-        return;
+        return;
 
-    }
+    }
 
-    const data=
+    const data=
 
-    snapshot.val();
+    snapshot.val();
 
-    if(data.playerO){
+    if(data.playerO){
 
-        alert("Room Full");
+        alert("Room Full");
 
-        return;
+        return;
 
-    }
+    }
 
-    await update(roomRef,{
+    await update(roomRef,{
 
-        playerO:true,
+        playerO:true,
 
-        gameStarted:true
+        gameStarted:true
 
-    });
+    });
 
-    currentRoom=roomId;
+    currentRoom=roomId;
 
-    mySymbol="O";
+    mySymbol="O";
 
-    gameMode="online";
+    gameMode="online";
 
-    gameModeText.textContent="Mode : Online";
+    gameModeText.textContent="Mode : Online";
 
-    onlineScreen.style.display="none";
+    onlineScreen.style.display="none";
 
-    gameScreen.style.display="block";
+    gameScreen.style.display="block";
 
-    chatContainer.style.display="block";
+    chatContainer.style.display="block";
 
-    roomInfo.style.display="block";
+    roomInfo.style.display="block";
 
-    roomCodeText.textContent=roomId;
+    roomCodeText.textContent=roomId;
 
-    copyRoomBtn.style.display="inline-block";
+    copyRoomBtn.style.display="inline-block";
 
-    resetBoard();
+    resetBoard();
 
-    startRoomListener();
-    startChatListener();
+    startRoomListener();
+    startChatListener();
 
 }
 // ======================================================
@@ -1352,262 +1334,262 @@ async function joinRoom(){
 
 function startRoomListener() {
 
-    // Room না থাকলে Return
+    // Room না থাকলে Return
 
-    if(currentRoom==="") return;
+    if(currentRoom==="") return;
 
-    // Firebase Reference
+    // Firebase Reference
 
-    const roomRef=
+    const roomRef=
 
-    ref(db,"rooms/"+currentRoom);
+    ref(db,"rooms/"+currentRoom);
 
-    // Live Listener
+    // Live Listener
 
-    onValue(roomRef,async(snapshot)=>{
+    onValue(roomRef,async(snapshot)=>{
 
-        // Room Delete হলে Return
+        // Room Delete হলে Return
 
-        if(!snapshot.exists()) return;
+        if(!snapshot.exists()) return;
 
-        // Room Data
+        // Room Data
 
-        const data=snapshot.val();
+        const data=snapshot.val();
 
-        // ----------------------------
-        // Room Info
-        // ----------------------------
+        // ----------------------------
+        // Room Info
+        // ----------------------------
 
-        roomInfo.style.display="block";
+        roomInfo.style.display="block";
 
-        roomCodeText.textContent=currentRoom;
+        roomCodeText.textContent=currentRoom;
 
-        copyRoomBtn.style.display="inline-block";
+        copyRoomBtn.style.display="inline-block";
 
-        // ----------------------------
-        // Waiting Screen
-        // ----------------------------
+        // ----------------------------
+        // Waiting Screen
+        // ----------------------------
 
-        if(!data.gameStarted){
+        if(!data.gameStarted){
 
-            running=false;
+            running=false;
 
-            stopTimer();
+            stopTimer();
 
-            resetTimers();
+            resetTimers();
 
-            statusText.textContent=
+            statusText.textContent=
 
-            "⏳ Waiting for Player 2...";
+            "⏳ Waiting for Player 2...";
 
-            return;
+            return;
 
-        }
+        }
 
-        // ----------------------------
-        // Game Start Animation
-        // ----------------------------
+        // ----------------------------
+        // Game Start Animation
+        // ----------------------------
 
-        if(
+        if(
 
-            !gameStarted &&
+            !gameStarted &&
 
-            data.gameStarted
+            data.gameStarted
 
-        ){
+        ){
 
-            gameStarted=true;
+            gameStarted=true;
 
-            gameStartOverlay.style.display="flex";
+            gameStartOverlay.style.display="flex";
 
-            running=false;
+            running=false;
 
-            stopTimer();
+            stopTimer();
 
-            setTimeout(()=>{
+            setTimeout(()=>{
 
-                gameStartOverlay.style.display="none";
+                gameStartOverlay.style.display="none";
 
-                running=true;
+                running=true;
 
-                currentPlayer=
+                currentPlayer=
 
-                data.currentPlayer;
+                data.currentPlayer;
 
-                startTimer();
+                startTimer();
 
-            },2000);
+            },2000);
 
-        }
+        }
 
-        // ----------------------------
-        // Board Sync
-        // ----------------------------
+        // ----------------------------
+        // Board Sync
+        // ----------------------------
 
-        board=[...data.board];
+        board=[...data.board];
 
-        currentPlayer=
+        currentPlayer=
 
-        data.currentPlayer;
+        data.currentPlayer;
 
-        // Board Update
+        // Board Update
 
-        for(
+        for(
 
-            let i=0;
+            let i=0;
 
-            i<9;
+            i<9;
 
-            i++
+            i++
 
-        ){
+        ){
 
-            cells[i].textContent=
+            cells[i].textContent=
 
-            board[i];
+            board[i];
 
-        }
-                // ----------------------------
-        // Opponent Left
-        // ----------------------------
+        }
+                // ----------------------------
+        // Opponent Left
+        // ----------------------------
 
-        if (
+        if (
 
-            (mySymbol === "X" && !data.playerO) ||
+            (mySymbol === "X" && !data.playerO) ||
 
-            (mySymbol === "O" && !data.playerX)
+            (mySymbol === "O" && !data.playerX)
 
-        ) {
+        ) {
 
-            running = false;
+            running = false;
 
-            stopTimer();
+            stopTimer();
 
-            statusText.textContent =
-            "❌ Opponent Left";
+            statusText.textContent =
+            "❌ Opponent Left";
 
-            setTimeout(() => {
+            setTimeout(() => {
 
-                alert("Opponent Left The Room");
+                alert("Opponent Left The Room");
 
-                gameScreen.style.display = "none";
+                gameScreen.style.display = "none";
 
-                homeScreen.style.display = "flex";
+                homeScreen.style.display = "flex";
 
-                currentRoom = "";
+                currentRoom = "";
 
-                mySymbol = "";
+                mySymbol = "";
 
-            },1500);
+            },1500);
 
-            return;
+            return;
 
-        }
+        }
 
 
-        // ----------------------------
-        // Winner Check
-        // ----------------------------
+        // ----------------------------
+        // Winner Check
+        // ----------------------------
 
-        let winner = "";
+        let winner = "";
 
-        let winCells = [];
+        let winCells = [];
 
 
-        for (let pattern of winPatterns) {
+        for (let pattern of winPatterns) {
 
-            const a = board[pattern[0]];
+            const a = board[pattern[0]];
 
-            const b = board[pattern[1]];
+            const b = board[pattern[1]];
 
-            const c = board[pattern[2]];
+            const c = board[pattern[2]];
 
 
-            if (
+            if (
 
-                a !== "" &&
+                a !== "" &&
 
-                a === b &&
+                a === b &&
 
-                b === c
+                b === c
 
-            ) {
+            ) {
 
-                winner = a;
+                winner = a;
 
-                winCells = pattern;
+                winCells = pattern;
 
-                break;
+                break;
 
-            }
+            }
 
-        }
+        }
 
 
-        // Winner
+        // Winner
 
-        if (winner !== "") {
+        if (winner !== "") {
 
-            running = false;
+            running = false;
 
-            stopTimer();
+            stopTimer();
 
-            statusText.textContent =
-            "🏆 Player " + winner + " Wins!";
+            statusText.textContent =
+            "🏆 Player " + winner + " Wins!";
 
 
-            winCells.forEach(index => {
+            winCells.forEach(index => {
 
-                cells[index].classList.add("win");
+                cells[index].classList.add("win");
 
-            });
+            });
 
 
-            winSound.currentTime = 0;
+            winSound.currentTime = 0;
 
-            winSound.play();
+            winSound.play();
 
 
-            return;
+            return;
 
-        }
+        }
 
 
-        // ----------------------------
-        // Draw
-        // ----------------------------
+        // ----------------------------
+        // Draw
+        // ----------------------------
 
-        if (!board.includes("")) {
+        if (!board.includes("")) {
 
-            running = false;
+            running = false;
 
-            stopTimer();
+            stopTimer();
 
-            statusText.textContent =
-            "🤝 Match Draw";
+            statusText.textContent =
+            "🤝 Match Draw";
 
-            drawSound.currentTime = 0;
+            drawSound.currentTime = 0;
 
-            drawSound.play();
+            drawSound.play();
 
-            return;
+            return;
 
-        }
+        }
 
 
-        // ----------------------------
-        // Current Turn
-        // ----------------------------
+        // ----------------------------
+        // Current Turn
+        // ----------------------------
 
-        statusText.textContent = "Player " + currentPlayer + " Turn";
+        statusText.textContent = "Player " + currentPlayer + " Turn";
 
-        // কেবল প্লেয়ার পরিবর্তন হলেই টাইমার ক্লিয়ার হয়ে নতুন ১৫ সেকেন্ড চালু হবে
-        if (running && currentPlayer !== lastTurnPlayer) {
-            lastTurnPlayer = currentPlayer;
-            startTimer();
-        }
+        // কেবল প্লেয়ার পরিবর্তন হলেই টাইমার ক্লিয়ার হয়ে নতুন ১৫ সেকেন্ড চালু হবে
+        if (running && currentPlayer !== lastTurnPlayer) {
+            lastTurnPlayer = currentPlayer;
+            startTimer();
+        }
 
-    });
+    });
 
 }
 // ======================================================
@@ -1622,43 +1604,43 @@ function startRoomListener() {
 
 async function onlineMove(index){
 
-    // নিজের Turn না হলে কিছু করবে না
+    // নিজের Turn না হলে কিছু করবে না
 
-    if(currentPlayer!==mySymbol) return;
+    if(currentPlayer!==mySymbol) return;
 
-    // Cell Filled হলে Return
+    // Cell Filled হলে Return
 
-    if(board[index]!="") return;
+    if(board[index]!="") return;
 
-    // Board Copy
+    // Board Copy
 
-    let newBoard=[...board];
+    let newBoard=[...board];
 
-    // Move
+    // Move
 
-    newBoard[index]=mySymbol;
+    newBoard[index]=mySymbol;
 
-    // Next Player
+    // Next Player
 
-    let nextPlayer=
+    let nextPlayer=
 
-    mySymbol==="X" ? "O" : "X";
+    mySymbol==="X" ? "O" : "X";
 
-    // Firebase Update
+    // Firebase Update
 
-    await update(
+    await update(
 
-        ref(db,"rooms/"+currentRoom),
+        ref(db,"rooms/"+currentRoom),
 
-        {
+        {
 
-            board:newBoard,
+            board:newBoard,
 
-            currentPlayer:nextPlayer
+            currentPlayer:nextPlayer
 
-        }
+        }
 
-    );
+    );
 
 }
 
@@ -1673,86 +1655,86 @@ let timerX = null;
 let timerO = null;
 
 function showSpeechBubble(sender, text) {
-    const bubble = sender === "X" ? bubbleX : bubbleO;
-    if (!bubble) return;
+    const bubble = sender === "X" ? bubbleX : bubbleO;
+    if (!bubble) return;
 
-    bubble.textContent = text;
-    bubble.style.display = "block";
+    bubble.textContent = text;
+    bubble.style.display = "block";
 
-    if (sender === "X") {
-        clearTimeout(timerX);
-        timerX = setTimeout(() => { bubble.style.display = "none"; }, 3500);
-    } else {
-        clearTimeout(timerO);
-        timerO = setTimeout(() => { bubble.style.display = "none"; }, 3500);
-    }
+    if (sender === "X") {
+        clearTimeout(timerX);
+        timerX = setTimeout(() => { bubble.style.display = "none"; }, 3500);
+    } else {
+        clearTimeout(timerO);
+        timerO = setTimeout(() => { bubble.style.display = "none"; }, 3500);
+    }
 }
 
 sendChatBtn.addEventListener("click", sendChat);
 
 chatInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendChat();
+    if (e.key === "Enter") sendChat();
 });
 
 async function sendChat() {
-    const message = chatInput.value.trim();
-    if (message === "" || !currentRoom) return;
+    const message = chatInput.value.trim();
+    if (message === "" || !currentRoom) return;
 
-    const msgId = "msg_" + Date.now();
-    const chatRef = ref(db, "rooms/" + currentRoom + "/chat/" + msgId);
+    const msgId = "msg_" + Date.now();
+    const chatRef = ref(db, "rooms/" + currentRoom + "/chat/" + msgId);
 
-    // মেসেজ ডাটা সেভ
-    await set(chatRef, {
-        sender: mySymbol,
-        text: message
-    });
+    // মেসেজ ডাটা সেভ
+    await set(chatRef, {
+        sender: mySymbol,
+        text: message
+    });
 
-    chatInput.value = "";
+    chatInput.value = "";
 }
 
 function startChatListener() {
-    if (!currentRoom) return;
+    if (!currentRoom) return;
 
-    const chatRef = ref(db, "rooms/" + currentRoom + "/chat");
+    const chatRef = ref(db, "rooms/" + currentRoom + "/chat");
 
-    onValue(chatRef, (snapshot) => {
-        chatMessages.innerHTML = "";
+    onValue(chatRef, (snapshot) => {
+        chatMessages.innerHTML = "";
 
-        if (snapshot.exists()) {
-            const chats = snapshot.val();
-            const msgList = Object.values(chats);
+        if (snapshot.exists()) {
+            const chats = snapshot.val();
+            const msgList = Object.values(chats);
 
-            // ১. চ্যাট বক্সে মেসেজ তৈরি
-            msgList.forEach((msg) => {
-                if (!msg || !msg.text) return;
+            // ১. চ্যাট বক্সে মেসেজ তৈরি
+            msgList.forEach((msg) => {
+                if (!msg || !msg.text) return;
 
-                const msgElement = document.createElement("div");
-                msgElement.style.margin = "4px 0";
-                msgElement.style.padding = "4px 8px";
-                msgElement.style.borderRadius = "4px";
+                const msgElement = document.createElement("div");
+                msgElement.style.margin = "4px 0";
+                msgElement.style.padding = "4px 8px";
+                msgElement.style.borderRadius = "4px";
 
-                if (msg.sender === mySymbol) {
-                    msgElement.style.textAlign = "right";
-                    msgElement.style.color = "#007bff";
-                    msgElement.textContent = "You: " + msg.text;
-                } else {
-                    msgElement.style.textAlign = "left";
-                    msgElement.style.color = "#28a745";
-                    msgElement.textContent = "Player " + msg.sender + ": " + msg.text;
-                }
+                if (msg.sender === mySymbol) {
+                    msgElement.style.textAlign = "right";
+                    msgElement.style.color = "#007bff";
+                    msgElement.textContent = "You: " + msg.text;
+                } else {
+                    msgElement.style.textAlign = "left";
+                    msgElement.style.color = "#28a745";
+                    msgElement.textContent = "Player " + msg.sender + ": " + msg.text;
+                }
 
-                chatMessages.appendChild(msgElement);
-            });
+                chatMessages.appendChild(msgElement);
+            });
 
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // ২. প্লেয়ারের ওপর পপ-আপ বাবল প্রদর্শন
-            const lastMsg = msgList[msgList.length - 1];
-            if (lastMsg && lastMsg.sender && lastMsg.text) {
-                showSpeechBubble(lastMsg.sender, lastMsg.text);
-            }
-        }
-    });
+            // ২. প্লেয়ারের ওপর পপ-আপ বাবল প্রদর্শন
+            const lastMsg = msgList[msgList.length - 1];
+            if (lastMsg && lastMsg.sender && lastMsg.text) {
+                showSpeechBubble(lastMsg.sender, lastMsg.text);
+            }
+        }
+    });
 }
 // =====================================
 // COPY ROOM
@@ -1760,19 +1742,19 @@ function startChatListener() {
 
 copyRoomBtn.addEventListener("click", async () => {
 
-    try {
+    try {
 
-        await navigator.clipboard.writeText(currentRoom);
+        await navigator.clipboard.writeText(currentRoom);
 
-        alert("✅ Room Code Copied");
+        alert("✅ Room Code Copied");
 
-    }
+    }
 
-    catch {
+    catch {
 
-        prompt("Copy Room Code", currentRoom);
+        prompt("Copy Room Code", currentRoom);
 
-    }
+    }
 
 });
 // =====================================
@@ -1785,44 +1767,323 @@ window.addEventListener(
 
 async()=>{
 
-    if(
+    if(
 
-        currentRoom===""
+        currentRoom===""
 
-    ) return;
+    ) return;
 
-    if(mySymbol==="X"){
+    if(mySymbol==="X"){
 
-        await update(
+        await update(
 
-            ref(db,"rooms/"+currentRoom),
+            ref(db,"rooms/"+currentRoom),
 
-            {
+            {
 
-                playerX:false
+                playerX:false
 
-            }
+            }
 
-        );
+        );
 
-    }
+    }
 
-    else{
+    else{
 
-        await update(
+        await update(
 
-            ref(db,"rooms/"+currentRoom),
+            ref(db,"rooms/"+currentRoom),
 
-            {
+            {
 
-                playerO:false
+                playerO:false
 
-            }
+            }
 
-        );
+        );
 
-    }
+    }
 
 });
 // ======================================================
-// FINAL CONTR
+// FINAL CONTROLS
+// PART-8A
+// ======================================================
+
+
+// =======================================
+// Restart Button
+// =======================================
+
+restartBtn.addEventListener("click", () => {
+    console.log("Restart Button Clicked");
+
+    // Friend Mode
+
+    if (gameMode === "friend") {
+
+        restartGame();
+
+    }
+
+    // AI Mode
+
+    else if (gameMode === "ai") {
+
+        restartGame();
+
+    }
+
+    // Online Mode
+
+    else {
+
+        playAgainOnline();
+
+    }
+
+});
+// =======================================
+// Play Again Online
+// =======================================
+
+async function playAgainOnline() {
+
+    if (currentRoom === "") return;
+
+    let roomRef =
+
+    ref(db, "rooms/" + currentRoom);
+
+    if (mySymbol === "X") {
+
+        await update(roomRef, {
+
+            playAgainX: true
+
+        });
+
+    }
+
+    else {
+
+        await update(roomRef, {
+
+            playAgainO: true
+
+        });
+
+    }
+
+}
+// =======================================
+// Home Button
+// =======================================
+
+homeBtn.addEventListener("click", async () => {
+
+    stopTimer();
+
+    gameScreen.style.display = "none";
+
+    difficultyScreen.style.display = "none";
+
+    onlineScreen.style.display = "none";
+
+    homeScreen.style.display = "flex";
+
+    chatContainer.style.display = "none";
+
+    roomInfo.style.display = "none";
+
+    currentRoom = "";
+
+    mySymbol = "";
+
+    gameMode = "friend";
+
+});
+// =======================================
+// Reset Score
+// =======================================
+
+resetScoreBtn.addEventListener("click", () => {
+
+    xScore = 0;
+
+    oScore = 0;
+
+    updateScore();
+
+});
+// =======================================
+// Theme
+// =======================================
+
+themeBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+});
+// ======================================================
+// FINAL STARTUP
+// PART-8B
+// ======================================================
+
+
+// =======================================
+// Page Load
+// =======================================
+
+window.addEventListener("load", () => {
+
+    // Score Load
+
+    updateScore();
+
+    // Timer Reset
+
+    resetTimers();
+
+    // Board Reset
+
+    clearBoard();
+
+    // Game Stop
+
+    running = false;
+
+    // Default Status
+
+    statusText.textContent =
+    "Select Game Mode";
+
+});
+
+
+// =======================================
+// Theme Load
+// =======================================
+
+const savedTheme =
+
+localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+
+    document.body.classList.add("dark");
+
+}
+
+
+// =======================================
+// Theme Save
+// =======================================
+
+themeBtn.addEventListener("click", () => {
+
+    if (
+
+        document.body.classList.contains("dark")
+
+    ) {
+
+        localStorage.setItem(
+
+            "theme",
+
+            "dark"
+
+        );
+
+    }
+
+    else {
+
+        localStorage.setItem(
+
+            "theme",
+
+            "light"
+
+        );
+
+    }
+
+});
+
+
+// =======================================
+// Auto Scroll Chat
+// =======================================
+
+function scrollChatBottom() {
+
+    chatMessages.scrollTop =
+
+    chatMessages.scrollHeight;
+
+}
+
+
+// =======================================
+// Disable Text Selection
+// =======================================
+
+document.addEventListener(
+
+    "selectstart",
+
+    (e) => {
+
+        e.preventDefault();
+
+    }
+
+);
+
+
+// =======================================
+// Disable Right Click (Optional)
+// =======================================
+
+document.addEventListener(
+
+    "contextmenu",
+
+    (e) => {
+
+        e.preventDefault();
+
+    }
+
+);
+
+
+// =======================================
+// Console Message
+// =======================================
+
+console.log(
+
+    "🎮 Tic Tac Toe Pro V3 Loaded Successfully"
+
+);
+// =========================
+// LIGHT / DARK MODE TOGGLE
+// =========================
+// const তুলে দিয়ে সরাসরি themeBtn ব্যবহার করো অথবা আলাদা ভ্যারিয়েবল নাম দাও
+let themeToggler = document.getElementById('themeBtn');
+
+if (themeToggler) {
+    themeToggler.onclick = () => {
+        document.body.classList.toggle('light-mode');
+        
+        if (document.body.classList.contains('light-mode')) {
+            themeToggler.innerText = '☀️ Light Mode';
+        } else {
+            themeToggler.innerText = '🌙 Dark Mode';
+        }
+    };
+}
