@@ -393,3 +393,23 @@ body.light-mode .cell:hover { background: #bae6fd !important; }
 body.light-mode #chatContainer { background: #ffffff !important; border-color: #0284c7 !important; color: #0f172a !important; }
 body.light-mode #chatMessages { border-color: #cbd5e1 !important; color: #0f172a !important; }
 body.light-mode .timerBox, body.light-mode .status, body.light-mode #gameModeText { color: #0369a1 !important; }
+/* ==========================================
+   BUTTON CLICK & Z-INDEX FIX
+   ========================================== */
+
+/* ১. বাটনগুলোকে সব লেয়ারের উপরে আনা যাতে ক্লিকে বাধা না আসে */
+.bottomButtons, 
+.bottomButtons button, 
+#homeScreen button, 
+#difficultyScreen button, 
+#onlineScreen button {
+    position: relative !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* ২. গেম স্টার্ট ওভারলে যখন হাইড থাকবে তখন যেন ক্লিকে বাধা না দেয় */
+#gameStartOverlay:not([style*="display: flex"]) {
+    pointer-events: none !important;
+}
