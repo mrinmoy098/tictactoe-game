@@ -155,12 +155,6 @@ document.getElementById("xTimer");
 
 const oTimerText =
 document.getElementById("oTimer");
-
-// Ensure audio objects have valid source paths
-const clickSound = new Audio('assets/sounds/click.mp3');
-const winSound = new Audio('assets/sounds/win.mp3'); 
-const drawSound = new Audio('assets/sounds/draw.mp3');
-
 // ==============================
 // GAME START OVERLAY
 // ==============================
